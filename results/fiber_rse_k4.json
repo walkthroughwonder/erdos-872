@@ -1,0 +1,11 @@
+{
+  "k": 4,
+  "n_states": 4268,
+  "n_nonterminal": 1819,
+  "certified_holds": 1603,
+  "raw_holds": 1603,
+  "certified_violations": 216,
+  "raw_violations": 216,
+  "enum_seconds": 0.0708463191986084,
+  "check_seconds": 0.09608721733093262
+}
