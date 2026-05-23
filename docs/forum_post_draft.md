@@ -87,8 +87,8 @@ A proof of this would make Theorem 4.7 of Buddhdev unconditional, improving the 
 
 ### Code and data
 
-All scripts and result files are at [https://github.com/Ero23/erdos-872](https://github.com/Ero23/erdos-872) (TODO: actually push these). Key files: `activation_rank2_rse.py`, `fiber_rse_check.py`, `multi_fiber_rse.py`, `k4_avoidance_v3.py`, plus JSON output for each enumeration. The Lean 4 skeleton in `Erdos872.lean` states the refined hypothesis but does not yet contain a proof.
+All scripts and result files are at [github.com/walkthroughwonder/erdos-872](https://github.com/walkthroughwonder/erdos-872). Key files: `src/activation_rank2_rse.py`, `src/fiber_rse_check.py`, `src/multi_fiber_rse.py`, `src/k4_avoidance_v3.py`, plus JSON output for each enumeration in `results/`. The Lean 4 skeleton in `lean/Erdos872.lean` states the refined hypothesis but does not yet contain a proof.
 
 I welcome any expert who can either prove the strategy invariant or construct a counterexample state outside the multi-fiber configurations I have tested. Buddhdev and Silva: would be great to hear if this resonates with what you have been thinking.
 
-(Edwin Rosero, GitHub: TBD, May 23 2026)
+(Edwin Rosero, GitHub: [walkthroughwonder](https://github.com/walkthroughwonder), May 23 2026)
