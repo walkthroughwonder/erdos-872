@@ -58,7 +58,16 @@ Config [3, 2, 2]:  baseline 0 failures,                       v3: 0 / 0.
 Config [2, 2, 2, 2]: baseline 0 failures,                     v3: 0 / 0.
 ```
 
-Larger configurations like `[5, 4]` and `[4, 4, 2]` exceed our enumeration budget of 8 million pre-Maker states; the smaller cases above are exhaustive.
+Larger configurations like `[5, 4]` and `[4, 4, 2]` exceed our exhaustive enumeration budget of 8 million pre-Maker states. To extend the evidence, I ran a Monte Carlo stress test that samples random Shortener trajectories under `v3` and checks raw RSE at every visited state.
+
+```
+Config [5, 4]:    20000 trials, 158992 state visits, 0 RSE failures.
+Config [4, 4, 2]: 20000 trials, 133434 state visits, 0 RSE failures.
+Config [5, 4, 3]: 10000 trials,  92956 state visits, 0 RSE failures.
+Config [6, 4]:    10000 trials, 100618 state visits, 0 RSE failures.
+```
+
+This is not an exhaustive proof but pushes the empirical evidence to roughly 486k additional state visits without finding a single counterexample.
 
 Under `v3` against an adversarial Shortener, the achieved final score `S_fin` exceeds the `M/8` bound of Proposition A.3 in every case:
 
