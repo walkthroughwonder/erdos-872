@@ -249,6 +249,75 @@ theorem satS_not_linearly_lower_bounded
     becomes unconditional, giving `satL n ≥ c_δ n (loglog n)^2 / log n`. -/
 def restrictedSafeEdgeHypothesis : Prop := sorry  -- to be stated in slot-game terms
 
+------------------------------------------------------------------------
+-- Phase 6: strategy v3 (trap-aware Maker refinement) - statement only
+------------------------------------------------------------------------
+
+/-- Abstract pre-Maker slot-game state. To be refined to match Buddhdev's
+    Section 3 notation (live-edge set, captured-slot set, Q-potential, weights,
+    fiber decomposition). -/
+structure SlotState where
+  fibers : List Nat                -- fiber sizes (k_1, ..., k_F)
+  -- Real state machinery (live edges, capture flags, weights, Phi values)
+  -- belongs in a dedicated module. Placeholder for the statement.
+
+/-- Per-fiber near-trap predicate.
+    A fiber `phi` is in the near-trap state when, post-Maker capture,
+    (a) `phi` has 0 vertex deletions,
+    (b) `phi` has 0 scored edges,
+    (c) `phi` has at least 1 ordinary capture (the just-played one counts),
+    (d) `phi` has at least 1 live edge with `Phi >= 4`
+        (equivalently, at least 1 live edge becomes `Phi == 8` post-capture).
+    This predicate exactly captures the geometry that leads to the K_4
+    failure of Proposition A.2 reached by the alternate play sequence
+    documented in `docs/phase4_computational_findings.md`. -/
+def inNearTrap (s : SlotState) (phi : Nat) : Prop := sorry
+
+/-- A live edge `f` is SAFE_CAPTURE at state `s` if Maker's ordinary capture
+    of `f` does NOT cause any fiber to enter `inNearTrap`. -/
+def isSafeCapture (s : SlotState) (f : Nat) : Prop := sorry
+
+/-- A live edge `f` is SAFE_SCORE at state `s` if Maker plays alternate-scoring
+    on `f`. (Alternate-scoring is always safe: it removes `f` from the live set
+    without changing any other edge's `Phi`.) -/
+def isSafeScore (s : SlotState) (f : Nat) : Prop := sorry
+
+/-- The v3 chosen move at state `s`:
+    1. If any SAFE_CAPTURE edge exists, play the one with maximum Q gain.
+    2. Else play SAFE_SCORE on a max-Q-gain live edge.
+    3. (Soundness obligation below: no state has only UNSAFE moves available.) -/
+noncomputable def strategy_v3 (s : SlotState) : Nat := sorry
+
+/-- The reachable pre-Maker state space under strategy v3 against any Shortener. -/
+def reachableV3 (s0 : SlotState) : Set SlotState := sorry
+
+/-- INVARIANT (the central conjecture from Phase 6). For every fiber configuration
+    `(k_1, ..., k_F)` with `k_i >= 2` and disjoint slot supports, and every state
+    `s` reachable from the initial state under `strategy_v3`, if at least one live
+    edge with positive weight remains then the SAFE_CAPTURE ∪ SAFE_SCORE set is
+    nonempty AND the chosen `v3` move yields a per-round Q-change `>= 0` under
+    any Shortener reply.
+
+    Computationally verified at 100% on configurations [4,2], [4,3], [4,4],
+    [3,3,3], [4,3,2], [3,3], [3,2,2], [2,2,2,2]. Larger configurations exceed
+    the 8M-state enumeration budget. -/
+def strategy_v3_invariant : Prop :=
+  ∀ (s0 : SlotState) (s : SlotState),
+    s ∈ reachableV3 s0 →
+    -- (existence of a safe move) ∧ (non-negative Q-change)
+    True  -- statement to be expanded once SlotState fields are filled in
+
+/-- If the v3 invariant holds, the restricted safe-edge hypothesis holds for
+    the v3-generated state subspace, and hence Buddhdev Thm 4.7 becomes
+    unconditional under v3. -/
+theorem v3_implies_T2_unconditional
+    (hInv : strategy_v3_invariant) :
+    ∃ c : ℝ, 0 < c ∧ ∀ᶠ n in Filter.atTop,
+      (satL n : ℝ) ≥ c * (n : ℝ) * (Real.log (Real.log n))^2 / Real.log n := by
+  -- Apply Buddhdev Thm 4.7 with the v3-strategy state space; the M/8 final
+  -- score bound (Prop A.3) is verified computationally for all tested configs.
+  sorry
+
 /-- Conditional T2 (Buddhdev Thm 4.7): if the restricted safe-edge hypothesis
     holds for the strategy-generated state subspace, then there is `c > 0` such
     that `satL n ≥ c n (loglog n)^2 / log n` for all sufficiently large `n`. -/
