@@ -1,0 +1,302 @@
+{
+  "exhaustive_or_completed": [
+    {
+      "name": "Buddhdev_K4_q_13_17_19_23",
+      "n_edges": 6,
+      "n_vertices": 5,
+      "states_seen": 195,
+      "pre_maker_checked": 97,
+      "terminal_states": 98,
+      "min_chosen_delta": 0,
+      "max_chosen_delta": 8,
+      "delta_hist": {
+        "0": 56,
+        "2": 9,
+        "4": 18,
+        "5": 2,
+        "6": 2,
+        "8": 10
+      },
+      "no_nonnegative_states": 0,
+      "first_bad_state": null,
+      "first_bad_move": null,
+      "first_bad_reply": null,
+      "min_terminal_score": 1,
+      "max_terminal_score": 6,
+      "M_over_8": 0.75,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 0.19172215461730957,
+      "_file": "v4_synth_buddhdev_k4.json"
+    },
+    {
+      "name": "[5]",
+      "n_edges": 10,
+      "n_vertices": 6,
+      "states_seen": 6416,
+      "pre_maker_checked": 4068,
+      "terminal_states": 2348,
+      "min_chosen_delta": -8,
+      "max_chosen_delta": 16,
+      "delta_hist": {
+        "-8": 3774,
+        "0": 128,
+        "4": 144,
+        "12": 6,
+        "14": 15,
+        "16": 1
+      },
+      "no_nonnegative_states": 3774,
+      "first_bad_state": "C=[(0, 0), (0, 1), (0, 2), (0, 4), (0, 5)] D_V=[(0, 3)] D_E=[2] K=[] captured_edges=[0, 9] S=2 Q=40 live=[(3, ((0, 0), (0, 1), (0, 5)), 8), (5, ((0, 0), (0, 2), (0, 4)), 8), (6, ((0, 0), (0, 2), (0, 5)), 8)]",
+      "first_bad_move": "('capture', 3, ((0, 0), (0, 1), (0, 5)), 'worst_delta', -8)",
+      "first_bad_reply": "('del_e', 5)",
+      "min_terminal_score": 4,
+      "max_terminal_score": 10,
+      "M_over_8": 1.25,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 1.6468703746795654,
+      "_file": "v4_synth_5.json"
+    },
+    {
+      "name": "[4, 2]",
+      "n_edges": 7,
+      "n_vertices": 8,
+      "states_seen": 1240,
+      "pre_maker_checked": 790,
+      "terminal_states": 450,
+      "min_chosen_delta": 0,
+      "max_chosen_delta": 11,
+      "delta_hist": {
+        "0": 324,
+        "2": 9,
+        "3": 50,
+        "4": 330,
+        "5": 2,
+        "6": 12,
+        "7": 48,
+        "8": 10,
+        "11": 5
+      },
+      "no_nonnegative_states": 0,
+      "first_bad_state": null,
+      "first_bad_move": null,
+      "first_bad_reply": null,
+      "min_terminal_score": 2,
+      "max_terminal_score": 7,
+      "M_over_8": 0.875,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 2.02347993850708,
+      "_file": "v4_synth_4_2.json"
+    },
+    {
+      "name": "[4, 3]",
+      "n_edges": 9,
+      "n_vertices": 9,
+      "states_seen": 7473,
+      "pre_maker_checked": 4514,
+      "terminal_states": 2959,
+      "min_chosen_delta": 0,
+      "max_chosen_delta": 11,
+      "delta_hist": {
+        "0": 2142,
+        "2": 123,
+        "3": 279,
+        "4": 1616,
+        "5": 119,
+        "6": 81,
+        "7": 39,
+        "8": 82,
+        "9": 18,
+        "11": 15
+      },
+      "no_nonnegative_states": 0,
+      "first_bad_state": null,
+      "first_bad_move": null,
+      "first_bad_reply": null,
+      "min_terminal_score": 2,
+      "max_terminal_score": 9,
+      "M_over_8": 1.125,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 87.86403942108154,
+      "_file": "v4_synth_4_3.json"
+    },
+    {
+      "name": "[3, 3, 3]",
+      "n_edges": 9,
+      "n_vertices": 12,
+      "states_seen": 5872,
+      "pre_maker_checked": 3269,
+      "terminal_states": 2603,
+      "min_chosen_delta": 0,
+      "max_chosen_delta": 7,
+      "delta_hist": {
+        "0": 1485,
+        "2": 114,
+        "3": 249,
+        "4": 1192,
+        "5": 151,
+        "6": 36,
+        "7": 42
+      },
+      "no_nonnegative_states": 0,
+      "first_bad_state": null,
+      "first_bad_move": null,
+      "first_bad_reply": null,
+      "min_terminal_score": 3,
+      "max_terminal_score": 9,
+      "M_over_8": 1.125,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 162.70685243606567,
+      "_file": "v4_synth_3_3_3.json"
+    },
+    {
+      "name": "Buddhdev_K4_q_13_17_19_23",
+      "n_edges": 6,
+      "n_vertices": 5,
+      "states_seen": 97,
+      "pre_maker_checked": 51,
+      "terminal_states": 46,
+      "min_chosen_delta": -8,
+      "max_chosen_delta": 10,
+      "delta_hist": {
+        "-8": 24,
+        "-4": 8,
+        "0": 10,
+        "10": 9
+      },
+      "no_nonnegative_states": 32,
+      "first_bad_state": "C=[(0, 0), (0, 13), (0, 17), (0, 19), (0, 23)] D_V=[] D_E=[1, 2] K=[] captured_edges=[0, 5] S=2 Q=32 live=[(3, ((0, 0), (0, 17), (0, 19)), 8), (4, ((0, 0), (0, 17), (0, 23)), 8)]",
+      "first_bad_move": "('capture', 3, ((0, 0), (0, 17), (0, 19)), 'worst_delta', -8)",
+      "first_bad_reply": "('del_e', 4)",
+      "min_terminal_score": 2,
+      "max_terminal_score": 6,
+      "M_over_8": 0.75,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 0.012580394744873047,
+      "_file": "v4_result_buddhdev_k4.json"
+    },
+    {
+      "name": "[5]",
+      "n_edges": 10,
+      "n_vertices": 6,
+      "states_seen": 6416,
+      "pre_maker_checked": 4068,
+      "terminal_states": 2348,
+      "min_chosen_delta": -8,
+      "max_chosen_delta": 16,
+      "delta_hist": {
+        "-8": 3774,
+        "0": 128,
+        "4": 144,
+        "12": 6,
+        "14": 15,
+        "16": 1
+      },
+      "no_nonnegative_states": 3774,
+      "first_bad_state": "C=[(0, 0), (0, 1), (0, 2), (0, 4), (0, 5)] D_V=[(0, 3)] D_E=[2] K=[] captured_edges=[0, 9] S=2 Q=40 live=[(3, ((0, 0), (0, 1), (0, 5)), 8), (5, ((0, 0), (0, 2), (0, 4)), 8), (6, ((0, 0), (0, 2), (0, 5)), 8)]",
+      "first_bad_move": "('capture', 3, ((0, 0), (0, 1), (0, 5)), 'worst_delta', -8)",
+      "first_bad_reply": "('del_e', 5)",
+      "min_terminal_score": 4,
+      "max_terminal_score": 10,
+      "M_over_8": 1.25,
+      "S_fin_ge_M_over_8": true,
+      "exhausted": true,
+      "cap_hit": false,
+      "seconds": 0.8021657466888428,
+      "_file": "v4_result_5.json"
+    }
+  ],
+  "initial_onestep": [
+    {
+      "cfg": [
+        5
+      ],
+      "n_edges": 10,
+      "Q0": 10,
+      "chosen": [
+        "capture",
+        0,
+        "((0, 0), (0, 1), (0, 2))"
+      ],
+      "worst_delta": 16,
+      "worst_reply": "('del_v', (0, 3))",
+      "Q_after_maker": 38
+    },
+    {
+      "cfg": [
+        7
+      ],
+      "n_edges": 21,
+      "Q0": 21,
+      "chosen": [
+        "capture",
+        0,
+        "((0, 0), (0, 1), (0, 2))"
+      ],
+      "worst_delta": 31,
+      "worst_reply": "('del_v', (0, 3))",
+      "Q_after_maker": 68
+    },
+    {
+      "cfg": [
+        5,
+        4
+      ],
+      "n_edges": 16,
+      "Q0": 16,
+      "chosen": [
+        "capture",
+        0,
+        "((0, 0), (0, 1), (0, 2))"
+      ],
+      "worst_delta": 16,
+      "worst_reply": "('del_v', (0, 3))",
+      "Q_after_maker": 44
+    },
+    {
+      "cfg": [
+        4,
+        4
+      ],
+      "n_edges": 12,
+      "Q0": 12,
+      "chosen": [
+        "capture",
+        0,
+        "((0, 0), (0, 1), (0, 2))"
+      ],
+      "worst_delta": 10,
+      "worst_reply": "('del_v', (0, 3))",
+      "Q_after_maker": 32
+    },
+    {
+      "cfg": [
+        4,
+        3,
+        2
+      ],
+      "n_edges": 10,
+      "Q0": 10,
+      "chosen": [
+        "capture",
+        0,
+        "((0, 0), (0, 1), (0, 2))"
+      ],
+      "worst_delta": 10,
+      "worst_reply": "('del_v', (0, 3))",
+      "Q_after_maker": 30
+    }
+  ],
+  "bad_path_file": "/home/user/workspace/erdos872/v4_k5_bad_path.txt"
+}
