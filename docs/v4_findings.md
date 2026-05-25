@@ -119,3 +119,11 @@ Does not survive:
 Do not post a proof claim. A defensible negative/diagnostic claim is:
 
 > I repaired the immediate q-deletion bug in v3 by checking the chosen move's worst-case full-round \(Q\) delta. The repair captures an edge containing the large-prime slot \(q\) rather than scoring first, so the initial [5], [7], and [5,4] q-deletion counterexamples disappear. However, an exhaustive finite safety-game check shows that no local strategy maintaining per-round \(Q\)-monotonicity exists even for the isolated unit-weight K5 q-fiber: Shortener can force a state with three live \(\Phi=8\) edges, after which every Maker move allows a \(-8\) edge-deletion reply. Thus a local residual repair is insufficient; any path to Buddhdev's conditional T2 theorem must use a genuine T2-generated-state invariant or global inter-fiber/activation compensation, not arbitrary q-fiber local monotonicity.
+
+## 7. T2 reachability
+
+Outcome: **reduced to manuscript clarification, not proved reachable or unreachable**.
+
+The T2 reachability question for the isolated unit K5 q-fiber cannot be decided from the manuscript as written. Proposition A.6 says that during activation Prolonger chooses "a safe edge supplied by" the restricted safe-edge hypothesis, but it does not specify a canonical selector among safe edges or prove a q-fiber invariant such as K5-freeness. Proposition A.2 explicitly distinguishes reachability under some legal play from reachability under the specific Proposition A.9 strategies, so this missing selector matters.
+
+I verified a concrete arithmetic incidence witness: for `n = 10^20`, `delta = 1/8`, small primes `{101,103,107,109,113}`, and `q = 4806305873305829`, all ten targets `p_i p_j q` remain live after a legal partial sequence of securing plays if the activation selector secures the ten clique pairs and Shortener avoids q. Independent scripts verify the interval conditions, legality, survival, and K5 slot incidence. This is not a full reachability proof, because the missing steps are to certify that those ten pair choices are safe edges in the full activation graph states and that the later completion of activation does not attach extra residual q-edges. See `/home/user/workspace/erdos872/t2_reachability_proof.md` and `/home/user/workspace/erdos872/t2_reachability_code/`.

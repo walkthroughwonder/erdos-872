@@ -1,0 +1,23 @@
+edges [(0, (0, 1)), (1, (0, 2)), (2, (0, 3)), (3, (0, 4)), (4, (1, 2)), (5, (1, 3)), (6, (1, 4)), (7, (2, 3)), (8, (2, 4)), (9, (3, 4))]
+initial Q 2.5
+step 1 state Q 2.5 C [] claimed [] safe_exists True {'maker': ('claim', 0)} chosen 0 (0, 1)
+  chosen safe? True worst_delta 1.75 worst_breaker ('del_v', 2) afterM Q 5.75
+step 2 state Q 5.75 C [0, 1] claimed [0] safe_exists True {'maker': ('claim', 1)} chosen 1 (0, 2)
+  chosen safe? True worst_delta 0.75 worst_breaker ('del_v', 3) afterM Q 8.25
+step 3 state Q 8.25 C [0, 1, 2] claimed [0, 1] safe_exists True {'maker': ('claim', 2)} chosen 2 (0, 3)
+  chosen safe? True worst_delta 0.75 worst_breaker ('del_v', 4) afterM Q 11.0
+step 4 state Q 11.0 C [0, 1, 2, 3] claimed [0, 1, 2] safe_exists True {'maker': ('claim', 3)} chosen 3 (0, 4)
+  chosen safe? True worst_delta 2.0 worst_breaker ('del_e', 4) afterM Q 14.0
+step 5 state Q 14.0 C [0, 1, 2, 3, 4] claimed [0, 1, 2, 3] safe_exists True {'maker': ('claim', 4)} chosen 4 (1, 2)
+  chosen safe? True worst_delta 0.0 worst_breaker ('del_e', 5) afterM Q 15.0
+step 6 state Q 15.0 C [0, 1, 2, 3, 4] claimed [0, 1, 2, 3, 4] safe_exists True {'maker': ('claim', 5)} chosen 5 (1, 3)
+  chosen safe? True worst_delta 0.0 worst_breaker ('del_e', 6) afterM Q 16.0
+step 7 state Q 16.0 C [0, 1, 2, 3, 4] claimed [0, 1, 2, 3, 4, 5] safe_exists True {'maker': ('claim', 6)} chosen 6 (1, 4)
+  chosen safe? True worst_delta 0.0 worst_breaker ('del_e', 7) afterM Q 17.0
+step 8 state Q 17.0 C [0, 1, 2, 3, 4] claimed [0, 1, 2, 3, 4, 5, 6] safe_exists True {'maker': ('claim', 7)} chosen 7 (2, 3)
+  chosen safe? True worst_delta 0.0 worst_breaker ('del_e', 8) afterM Q 18.0
+step 9 state Q 18.0 C [0, 1, 2, 3, 4] claimed [0, 1, 2, 3, 4, 5, 6, 7] safe_exists True {'maker': ('claim', 8)} chosen 8 (2, 4)
+  chosen safe? True worst_delta 0.0 worst_breaker ('del_e', 9) afterM Q 19.0
+step 10 state Q 19.0 C [0, 1, 2, 3, 4] claimed [0, 1, 2, 3, 4, 5, 6, 7, 8] safe_exists True {'maker': ('claim', 9)} chosen 9 (3, 4)
+  chosen safe? True worst_delta 1.0 worst_breaker None afterM Q 20.0
+final State(C=frozenset({0, 1, 2, 3, 4}), D_V=frozenset(), claimed=frozenset({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}), D_E=frozenset(), w=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1), S=10) Q 20.0
