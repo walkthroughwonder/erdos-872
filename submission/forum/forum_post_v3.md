@@ -8,7 +8,7 @@ Two small contributions on this thread, both with AI disclosure up front.
 
 ## 1. Lean statement file for #872
 
-I have opened a PR on [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures) adding `ErdosProblems/872.lean` (link will go here once the PR number is assigned). The open statements have `sorry` proofs; the trivial bound and two supporting lemmas are fully proved. The file covers:
+I have opened [PR #4226 on google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures/pull/4226) adding `ErdosProblems/872.lean`. The open statements have `sorry` proofs; the trivial bound and two supporting lemmas are fully proved. The file covers:
 
 - The two asymptotic targets in the original problem (ε·n and (1-ε)·n/2)
 - The trivial upper bound L(n) ≤ n-1, with a complete proof via the fuel-recursion bound
