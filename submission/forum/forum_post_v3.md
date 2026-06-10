@@ -16,7 +16,7 @@ I have opened [PR #4226 on google-deepmind/formal-conjectures](https://github.co
 
 I deliberately left Buddhdev's conditional c_δ · n · (log log n)² / log n bound out of this first PR: the manuscript is not yet public, so reviewers could not evaluate the citation, and a faithful formal statement of the conditional form needs the restricted safe-edge hypothesis formalized. It can follow as a second PR once the manuscript is available.
 
-In a keyword scan I did not find another game-value formalization in the repo, so reviewers will likely have opinions on how to formalize the game semantics. Feedback welcome on the formalization (especially from @pommeret who self-identified as working on formalization).
+In a keyword scan I did not find another game-value formalization in the repo, so reviewers will likely have opinions on how to formalize the game semantics. Feedback welcome on the formalization (especially from @Pommeret who self-identified as working on formalization).
 
 ## 2. Computational analysis of Buddhdev's manuscript framework
 
@@ -40,4 +40,4 @@ The exclusion does **not** cover multi-step activation strategies that first sec
 
 All of this used AI assistance (Claude Sonnet 4.6 and GPT-5.5 Pro via Perplexity Computer) for code generation and safety-game synthesis, with manual verification against the manuscript. The v3 retraction in the repo documents an earlier flawed attempt that I withdrew after self-criticism caught it; the v4 result above survived that critique.
 
-Happy to extend the multi-step activation checker, add Lean proofs to specific cases, or coordinate with anyone already working on this. Tagging @Om_Buddhdev_sensho, @Jonas Silva, @pommeret, @old-bielefelder.
+Happy to extend the multi-step activation checker, add Lean proofs to specific cases, or coordinate with anyone already working on this. Tagging @Om_Buddhdev_sensho, @jonaslsa, @Pommeret, @old-bielefelder.
