@@ -1,5 +1,3 @@
-# Add Erdős Problem 872 (primitive set game)
-
 ## Summary
 
 This PR adds a Lean 4 statement file for [Erdős Problem 872](https://www.erdosproblems.com/872), which asks how long the divisibility-antichain saturation game on `{2, ..., n}` can be guaranteed to last.

@@ -27,7 +27,9 @@ Outcome (C) of the T2 reachability question: there is a conditional incidence wi
 
 ## Lean 4 formalization
 
-The Lean statement file lives at [`lean/872.lean`](lean/872.lean). It uses an explicit-fuel minimax recursion (`gameValueAux`) so that `gameLength` is a real total definition with no `sorry` in its body. Only the five theorem proofs are `sorry`. Design notes and compile log are under [`lean/v3/`](lean/v3/).
+The Lean statement file lives at [`lean/872.lean`](lean/872.lean). It uses an explicit-fuel minimax recursion (`gameValueAux`) so that `gameLength` is a real total definition with no `sorry` in its body. The three open problem statements have `sorry` proofs; `trivial_upper_bound` and two API lemmas (`mem_legalMoves`, `gameValueAux_le`) are fully proved. The current compile log is [`logs/872_v4_compile.log`](logs/872_v4_compile.log); design notes from the earlier v3 rewrite remain under [`lean/v3/`](lean/v3/) (historical).
+
+Relative to the prior draft (archived at [`lean/archive/872_v3.lean`](lean/archive/872_v3.lean)): the prime-question variant is now stated structurally over maximal primitive subsets (the faithful reading of the forum question, strictly stronger than a bound on the game value alone), and the Buddhdev conditional variant was removed from the submission file — its formal statement was unconditional while its name and docstring described a conditional theorem, and it cited a private manuscript that PR reviewers cannot evaluate. It can return as a follow-up once the manuscript is public.
 
 The submission package to `google-deepmind/formal-conjectures` (PR body, GPT-5.5 audit report) is under [`submission/pr/`](submission/pr/). The audit identified five blocking issues in the prior `872_v2.lean` draft (weak quantifier bug, undefined `gameLength`, K_5 overclaim, prime variant misstatement, dishonest checklist line); all are fixed in the current `lean/872.lean`.
 

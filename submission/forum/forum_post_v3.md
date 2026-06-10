@@ -8,14 +8,15 @@ Two small contributions on this thread, both with AI disclosure up front.
 
 ## 1. Lean statement file for #872
 
-I have opened a PR on [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures) adding `ErdosProblems/872.lean` (link will go here once the PR number is assigned). The file is statements only (all proofs `sorry`) and covers:
+I have opened a PR on [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures) adding `ErdosProblems/872.lean` (link will go here once the PR number is assigned). The open statements have `sorry` proofs; the trivial bound and two supporting lemmas are fully proved. The file covers:
 
 - The two asymptotic targets in the original problem (ε·n and (1-ε)·n/2)
-- The trivial upper bound L(n) ≤ n-1
-- The Angelo-style π(n) lower bound raised above in this thread
-- Buddhdev's conditional c_δ · n · (log log n)² / log n bound
+- The trivial upper bound L(n) ≤ n-1, with a complete proof via the fuel-recursion bound
+- The question raised earlier in this thread (how small can a maximal primitive subset be?), stated structurally: must every maximal primitive subset of {2,...,n} have size at least π(n)?
 
-Problem 872 is currently the first game-theoretic Erdős problem in the repo, so reviewers will likely have opinions on how to formalize Maker-Breaker semantics. Feedback welcome on the formalization (especially from @pommeret who self-identified as working on formalization).
+I deliberately left Buddhdev's conditional c_δ · n · (log log n)² / log n bound out of this first PR: the manuscript is not yet public, so reviewers could not evaluate the citation, and a faithful formal statement of the conditional form needs the restricted safe-edge hypothesis formalized. It can follow as a second PR once the manuscript is available.
+
+In a keyword scan I did not find another game-value formalization in the repo, so reviewers will likely have opinions on how to formalize the game semantics. Feedback welcome on the formalization (especially from @pommeret who self-identified as working on formalization).
 
 ## 2. Computational analysis of Buddhdev's manuscript framework
 

@@ -1,0 +1,17 @@
+# lake env lean FormalConjectures/ErdosProblems/872.lean
+# Toolchain: Lean 4 v4.27.0 (elan), formal-conjectures main @ shallow clone 2026-06-10,
+# Mathlib a3a10db0e9d66acbebf76c5e6a135066525ac900 (lake exe cache get).
+# Full `lake build FormalConjectures.Util.ProblemImports` (8028 jobs) succeeded first,
+# so all repo linters (AnswerLinter, CategoryLinter, CategoryDocstringLinter, AMSLinter)
+# were active during elaboration. Host: Windows 11, 2026-06-10.
+# Re-run after the post-review revision (parts.i/parts.ii rename, textbook category,
+# turn-order/attribution docstring fixes, parts.ii status note).
+
+FormalConjectures\ErdosProblems\872.lean:158:8: warning: declaration uses 'sorry'
+FormalConjectures\ErdosProblems\872.lean:171:8: warning: declaration uses 'sorry'
+FormalConjectures\ErdosProblems\872.lean:192:8: warning: declaration uses 'sorry'
+exit_code=0
+
+# The three warnings are the three open statements (parts.i, parts.ii,
+# variants.prime_question). mem_legalMoves, gameValueAux_le, and
+# trivial_upper_bound are fully proved (no sorry).
