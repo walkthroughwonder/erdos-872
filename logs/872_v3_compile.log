@@ -1,0 +1,6 @@
+FormalConjectures/ErdosProblems/872.lean:112:8: warning: declaration uses 'sorry'
+FormalConjectures/ErdosProblems/872.lean:119:8: warning: declaration uses 'sorry'
+FormalConjectures/ErdosProblems/872.lean:126:8: warning: declaration uses 'sorry'
+FormalConjectures/ErdosProblems/872.lean:134:8: warning: declaration uses 'sorry'
+FormalConjectures/ErdosProblems/872.lean:144:8: warning: declaration uses 'sorry'
+exit_code=0

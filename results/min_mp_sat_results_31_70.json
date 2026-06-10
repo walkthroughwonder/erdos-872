@@ -1,0 +1,762 @@
+{
+  "31": {
+    "pi_n": 11,
+    "min_M": 11,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 11,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      16,
+      17,
+      19,
+      23,
+      29
+    ]
+  },
+  "32": {
+    "pi_n": 11,
+    "min_M": 11,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 11,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "33": {
+    "pi_n": 11,
+    "min_M": 11,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 11,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "34": {
+    "pi_n": 11,
+    "min_M": 11,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 11,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "35": {
+    "pi_n": 11,
+    "min_M": 11,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 11,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "36": {
+    "pi_n": 11,
+    "min_M": 11,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 11,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "37": {
+    "pi_n": 12,
+    "min_M": 12,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 12,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "38": {
+    "pi_n": 12,
+    "min_M": 12,
+    "status": "OPTIMAL",
+    "time_s": 0.0,
+    "witness_size": 12,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "39": {
+    "pi_n": 12,
+    "min_M": 12,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 12,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "40": {
+    "pi_n": 12,
+    "min_M": 12,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 12,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "41": {
+    "pi_n": 13,
+    "min_M": 13,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 13,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "42": {
+    "pi_n": 13,
+    "min_M": 13,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 13,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "43": {
+    "pi_n": 14,
+    "min_M": 14,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 14,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "44": {
+    "pi_n": 14,
+    "min_M": 14,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 14,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "45": {
+    "pi_n": 14,
+    "min_M": 14,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 14,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "46": {
+    "pi_n": 14,
+    "min_M": 14,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 14,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "47": {
+    "pi_n": 15,
+    "min_M": 15,
+    "status": "OPTIMAL",
+    "time_s": 0.1,
+    "witness_size": 15,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "48": {
+    "pi_n": 15,
+    "min_M": 15,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 15,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "49": {
+    "pi_n": 15,
+    "min_M": 15,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 15,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "50": {
+    "pi_n": 15,
+    "min_M": 15,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 15,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "51": {
+    "pi_n": 15,
+    "min_M": 15,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 15,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "52": {
+    "pi_n": 15,
+    "min_M": 15,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 15,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "53": {
+    "pi_n": 16,
+    "min_M": 16,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 16,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "54": {
+    "pi_n": 16,
+    "min_M": 16,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 16,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "55": {
+    "pi_n": 16,
+    "min_M": 16,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 16,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "56": {
+    "pi_n": 16,
+    "min_M": 16,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 16,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "57": {
+    "pi_n": 16,
+    "min_M": 16,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 16,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "58": {
+    "pi_n": 16,
+    "min_M": 16,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 16,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "59": {
+    "pi_n": 17,
+    "min_M": 17,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 17,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "60": {
+    "pi_n": 17,
+    "min_M": 17,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 17,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "61": {
+    "pi_n": 18,
+    "min_M": 18,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 18,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "62": {
+    "pi_n": 18,
+    "min_M": 18,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 18,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "63": {
+    "pi_n": 18,
+    "min_M": 18,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 18,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "64": {
+    "pi_n": 18,
+    "min_M": 18,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 18,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "65": {
+    "pi_n": 18,
+    "min_M": 18,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 18,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "66": {
+    "pi_n": 18,
+    "min_M": 18,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 18,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "67": {
+    "pi_n": 19,
+    "min_M": 19,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 19,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "68": {
+    "pi_n": 19,
+    "min_M": 19,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 19,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "69": {
+    "pi_n": 19,
+    "min_M": 19,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 19,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  },
+  "70": {
+    "pi_n": 19,
+    "min_M": 19,
+    "status": "OPTIMAL",
+    "time_s": 0.01,
+    "witness_size": 19,
+    "witness_sample": [
+      3,
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31
+    ]
+  }
+}

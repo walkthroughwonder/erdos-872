@@ -1,0 +1,85 @@
+/home/user/workspace/erdos872/min_mp_sat.py:1: SyntaxWarning: invalid escape sequence '\M'
+  """
+=== Min maximal primitive subset via CP-SAT, n=31..70, time_limit=60s/n ===
+n=31: π(n)=11, min|M|=11 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 16, 17, 19, 23, 29, 31]
+n=32: π(n)=11, min|M|=11 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32]
+n=33: π(n)=11, min|M|=11 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32]
+n=34: π(n)=11, min|M|=11 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32]
+n=35: π(n)=11, min|M|=11 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32]
+n=36: π(n)=11, min|M|=11 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32]
+n=37: π(n)=12, min|M|=12 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37]
+n=38: π(n)=12, min|M|=12 (OPTIMAL, 0.00s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37]
+n=39: π(n)=12, min|M|=12 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37]
+n=40: π(n)=12, min|M|=12 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37]
+n=41: π(n)=13, min|M|=13 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41]
+n=42: π(n)=13, min|M|=13 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41]
+n=43: π(n)=14, min|M|=14 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43]
+n=44: π(n)=14, min|M|=14 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43]
+n=45: π(n)=14, min|M|=14 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43]
+n=46: π(n)=14, min|M|=14 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43]
+n=47: π(n)=15, min|M|=15 (OPTIMAL, 0.10s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]
+n=48: π(n)=15, min|M|=15 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]
+n=49: π(n)=15, min|M|=15 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]
+n=50: π(n)=15, min|M|=15 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]
+n=51: π(n)=15, min|M|=15 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]
+n=52: π(n)=15, min|M|=15 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]
+n=53: π(n)=16, min|M|=16 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=54: π(n)=16, min|M|=16 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=55: π(n)=16, min|M|=16 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=56: π(n)=16, min|M|=16 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=57: π(n)=16, min|M|=16 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=58: π(n)=16, min|M|=16 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=59: π(n)=17, min|M|=17 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=60: π(n)=17, min|M|=17 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=61: π(n)=18, min|M|=18 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=62: π(n)=18, min|M|=18 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=63: π(n)=18, min|M|=18 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 32, 37, 41, 43, 47]...
+n=64: π(n)=18, min|M|=18 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+n=65: π(n)=18, min|M|=18 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+n=66: π(n)=18, min|M|=18 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+n=67: π(n)=19, min|M|=19 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+n=68: π(n)=19, min|M|=19 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+n=69: π(n)=19, min|M|=19 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+n=70: π(n)=19, min|M|=19 (OPTIMAL, 0.01s)
+  confirmed min|M|=π(n). witness=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]...
+
+Saved results to /home/user/workspace/erdos872/min_mp_sat_results_31_70.json

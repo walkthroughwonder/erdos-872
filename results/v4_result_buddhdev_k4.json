@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Buddhdev_K4_q_13_17_19_23",
+    "n_edges": 6,
+    "n_vertices": 5,
+    "states_seen": 97,
+    "pre_maker_checked": 51,
+    "terminal_states": 46,
+    "min_chosen_delta": -8,
+    "max_chosen_delta": 10,
+    "delta_hist": {
+      "-8": 24,
+      "-4": 8,
+      "0": 10,
+      "10": 9
+    },
+    "no_nonnegative_states": 32,
+    "first_bad_state": "C=[(0, 0), (0, 13), (0, 17), (0, 19), (0, 23)] D_V=[] D_E=[1, 2] K=[] captured_edges=[0, 5] S=2 Q=32 live=[(3, ((0, 0), (0, 17), (0, 19)), 8), (4, ((0, 0), (0, 17), (0, 23)), 8)]",
+    "first_bad_move": "('capture', 3, ((0, 0), (0, 17), (0, 19)), 'worst_delta', -8)",
+    "first_bad_reply": "('del_e', 4)",
+    "min_terminal_score": 2,
+    "max_terminal_score": 6,
+    "M_over_8": 0.75,
+    "S_fin_ge_M_over_8": true,
+    "exhausted": true,
+    "cap_hit": false,
+    "seconds": 0.012580394744873047
+  }
+]

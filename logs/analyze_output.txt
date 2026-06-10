@@ -1,0 +1,113 @@
+n= 4  sat_L=  2  sat_S=  2  max_primitive_size=  2  sat_L/max=1.000  opt_first_long=[2, 3, 4]
+          first-move 2 = 2 | mult-in-range:2 divs-in-range:1
+          first-move 3 = 3 | mult-in-range:1 divs-in-range:1
+          first-move 4 = 2^2 | mult-in-range:1 divs-in-range:2
+n= 5  sat_L=  3  sat_S=  3  max_primitive_size=  2  sat_L/max=1.500  opt_first_long=[2, 3, 4, 5]
+          first-move 2 = 2 | mult-in-range:2 divs-in-range:1
+          first-move 3 = 3 | mult-in-range:1 divs-in-range:1
+          first-move 4 = 2^2 | mult-in-range:1 divs-in-range:2
+n= 6  sat_L=  3  sat_S=  3  max_primitive_size=  3  sat_L/max=1.000  opt_first_long=[2, 3, 4, 5, 6]
+          first-move 2 = 2 | mult-in-range:3 divs-in-range:1
+          first-move 3 = 3 | mult-in-range:2 divs-in-range:1
+          first-move 4 = 2^2 | mult-in-range:1 divs-in-range:2
+n= 7  sat_L=  4  sat_S=  4  max_primitive_size=  3  sat_L/max=1.333  opt_first_long=[2, 3, 4, 5, 6, 7]
+          first-move 2 = 2 | mult-in-range:3 divs-in-range:1
+          first-move 3 = 3 | mult-in-range:2 divs-in-range:1
+          first-move 4 = 2^2 | mult-in-range:1 divs-in-range:2
+n= 8  sat_L=  4  sat_S=  4  max_primitive_size=  4  sat_L/max=1.000  opt_first_long=[2, 3, 4, 5, 6, 7, 8]
+          first-move 2 = 2 | mult-in-range:4 divs-in-range:1
+          first-move 3 = 3 | mult-in-range:2 divs-in-range:1
+          first-move 4 = 2^2 | mult-in-range:2 divs-in-range:2
+n= 9  sat_L=  5  sat_S=  4  max_primitive_size=  4  sat_L/max=1.250  opt_first_long=[6]
+          first-move 6 = 2 * 3 | mult-in-range:1 divs-in-range:3
+n=10  sat_L=  5  sat_S=  4  max_primitive_size=  5  sat_L/max=1.000  opt_first_long=[6]
+          first-move 6 = 2 * 3 | mult-in-range:1 divs-in-range:3
+n=11  sat_L=  6  sat_S=  5  max_primitive_size=  5  sat_L/max=1.200  opt_first_long=[6]
+          first-move 6 = 2 * 3 | mult-in-range:1 divs-in-range:3
+n=12  sat_L=  6  sat_S=  5  max_primitive_size=  6  sat_L/max=1.000  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:2 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=13  sat_L=  7  sat_S=  6  max_primitive_size=  6  sat_L/max=1.167  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:2 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=14  sat_L=  7  sat_S=  6  max_primitive_size=  7  sat_L/max=1.000  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:2 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=15  sat_L=  7  sat_S=  6  max_primitive_size=  7  sat_L/max=1.000  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:2 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=16  sat_L=  7  sat_S=  6  max_primitive_size=  8  sat_L/max=0.875  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:2 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=17  sat_L=  8  sat_S=  7  max_primitive_size=  8  sat_L/max=1.000  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:2 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=18  sat_L=  8  sat_S=  7  max_primitive_size=  9  sat_L/max=0.889  opt_first_long=[6, 12, 18]
+          first-move 6 = 2 * 3 | mult-in-range:3 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+          first-move 18 = 2 * 3^2 | mult-in-range:1 divs-in-range:5
+n=19  sat_L=  9  sat_S=  8  max_primitive_size=  9  sat_L/max=1.000  opt_first_long=[6, 12, 18]
+          first-move 6 = 2 * 3 | mult-in-range:3 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+          first-move 18 = 2 * 3^2 | mult-in-range:1 divs-in-range:5
+n=20  sat_L=  9  sat_S=  8  max_primitive_size= 10  sat_L/max=0.900  opt_first_long=[6, 12, 18]
+          first-move 6 = 2 * 3 | mult-in-range:3 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+          first-move 18 = 2 * 3^2 | mult-in-range:1 divs-in-range:5
+n=21  sat_L= 10  sat_S=  8  max_primitive_size= 10  sat_L/max=1.000  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:3 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=22  sat_L= 10  sat_S=  8  max_primitive_size= 11  sat_L/max=0.909  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:3 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=23  sat_L= 11  sat_S=  9  max_primitive_size= 11  sat_L/max=1.000  opt_first_long=[6, 12]
+          first-move 6 = 2 * 3 | mult-in-range:3 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:1 divs-in-range:5
+n=24  sat_L= 11  sat_S=  9  max_primitive_size= 12  sat_L/max=0.917  opt_first_long=[6, 12, 24]
+          first-move 6 = 2 * 3 | mult-in-range:4 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:2 divs-in-range:5
+          first-move 24 = 2^3 * 3 | mult-in-range:1 divs-in-range:7
+n=25  sat_L= 11  sat_S= 10  max_primitive_size= 12  sat_L/max=0.917  opt_first_long=[6, 12, 24]
+          first-move 6 = 2 * 3 | mult-in-range:4 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:2 divs-in-range:5
+          first-move 24 = 2^3 * 3 | mult-in-range:1 divs-in-range:7
+n=26  sat_L= 11  sat_S= 10  max_primitive_size= 13  sat_L/max=0.846  opt_first_long=[6, 12, 24]
+          first-move 6 = 2 * 3 | mult-in-range:4 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:2 divs-in-range:5
+          first-move 24 = 2^3 * 3 | mult-in-range:1 divs-in-range:7
+n=27  sat_L= 11  sat_S= 10  max_primitive_size= 13  sat_L/max=0.846  opt_first_long=[6, 12, 18, 24]
+          first-move 6 = 2 * 3 | mult-in-range:4 divs-in-range:3
+          first-move 12 = 2^2 * 3 | mult-in-range:2 divs-in-range:5
+          first-move 18 = 2 * 3^2 | mult-in-range:1 divs-in-range:5
+n=28  sat_L= 12  sat_S= 10  max_primitive_size= 14  sat_L/max=0.857  opt_first_long=[18]
+          first-move 18 = 2 * 3^2 | mult-in-range:1 divs-in-range:5
+n=29  sat_L= 13  sat_S= 11  max_primitive_size= 14  sat_L/max=0.929  opt_first_long=[18]
+          first-move 18 = 2 * 3^2 | mult-in-range:1 divs-in-range:5
+
+  n  sat_L  max_prim   gap    gap/n
+  4      2         2     0   0.0000
+  5      3         2    -1  -0.2000
+  6      3         3     0   0.0000
+  7      4         3    -1  -0.1429
+  8      4         4     0   0.0000
+  9      5         4    -1  -0.1111
+ 10      5         5     0   0.0000
+ 11      6         5    -1  -0.0909
+ 12      6         6     0   0.0000
+ 13      7         6    -1  -0.0769
+ 14      7         7     0   0.0000
+ 15      7         7     0   0.0000
+ 16      7         8     1   0.0625
+ 17      8         8     0   0.0000
+ 18      8         9     1   0.0556
+ 19      9         9     0   0.0000
+ 20      9        10     1   0.0500
+ 21     10        10     0   0.0000
+ 22     10        11     1   0.0455
+ 23     11        11     0   0.0000
+ 24     11        12     1   0.0417
+ 25     11        12     1   0.0400
+ 26     11        13     2   0.0769
+ 27     11        13     2   0.0741
+ 28     12        14     2   0.0714
+ 29     13        14     1   0.0345

@@ -1,0 +1,20 @@
+
+=== Config [4, 2] ===
+  max_gain  (baseline): 336 states in 0.02s, RSE failures=74, isolated-K_k-sig hits=32
+  v3 trap+phi8 aware: 662 states in 0.03s, RSE failures=0, isolated-K_k-sig hits=0
+
+=== Config [4, 3] ===
+  max_gain  (baseline): 2440 states in 0.16s, RSE failures=686, isolated-K_k-sig hits=320
+  v3 trap+phi8 aware: 9907 states in 0.50s, RSE failures=0, isolated-K_k-sig hits=0
+
+=== Config [4, 4] ===
+  max_gain  (baseline): 58763 states in 5.01s, RSE failures=30808, isolated-K_k-sig hits=12320
+  v3 trap+phi8 aware: 313409 states in 20.20s, RSE failures=0, isolated-K_k-sig hits=0
+
+=== Config [3, 3, 3] ===
+  max_gain  (baseline): 5412 states in 0.29s, RSE failures=576, isolated-K_k-sig hits=0
+  v3 trap+phi8 aware: 12166 states in 0.67s, RSE failures=0, isolated-K_k-sig hits=0
+
+=== Config [4, 3, 2] ===
+  max_gain  (baseline): 10978 states in 0.78s, RSE failures=5008, isolated-K_k-sig hits=2128
+  v3 trap+phi8 aware: 37383 states in 1.83s, RSE failures=0, isolated-K_k-sig hits=0

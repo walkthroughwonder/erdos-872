@@ -1,0 +1,9 @@
+n=31: π(n)=11, searching for size 10
+  -> n=31: min |M| = None, nodes=2278983, time=60.00s
+n=32: π(n)=11, searching for size 10
+  -> n=32: min |M| = None, nodes=2215566, time=60.00s
+n=33: π(n)=11, searching for size 10
+  -> n=33: min |M| = None, nodes=2194202, time=60.00s
+n=34: π(n)=11, searching for size 10
+  -> n=34: min |M| = None, nodes=2137459, time=60.00s
+n=35: π(n)=11, searching for size 10

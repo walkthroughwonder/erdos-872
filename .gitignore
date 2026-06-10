@@ -1,7 +1,6 @@
 __pycache__/
 *.pyc
-*.pyo
-*.log
 .DS_Store
-.venv/
-*.tmp
+.env
+node_modules/
+*.bak

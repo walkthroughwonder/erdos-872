@@ -1,0 +1,33 @@
+
+=== Config [4, 4] ===
+  Strategy max_gain (baseline): visited 58763 states in 5.05s
+    multi-fiber RSE failures: 30808
+    states matching isolated K_k trap signature: 12320
+  Strategy trap_aware_score: visited 136711 states in 9.21s
+    multi-fiber RSE failures: 5710
+    states matching isolated K_k trap signature: 0
+  Strategy trap_aware_switch: visited 141703 states in 9.16s
+    multi-fiber RSE failures: 6014
+    states matching isolated K_k trap signature: 0
+
+=== Config [4, 2] ===
+  Strategy max_gain (baseline): visited 336 states in 0.02s
+    multi-fiber RSE failures: 74
+    states matching isolated K_k trap signature: 32
+  Strategy trap_aware_score: visited 420 states in 0.02s
+    multi-fiber RSE failures: 0
+    states matching isolated K_k trap signature: 0
+  Strategy trap_aware_switch: visited 426 states in 0.02s
+    multi-fiber RSE failures: 0
+    states matching isolated K_k trap signature: 0
+
+=== Config [4, 3] ===
+  Strategy max_gain (baseline): visited 2440 states in 0.16s
+    multi-fiber RSE failures: 686
+    states matching isolated K_k trap signature: 320
+  Strategy trap_aware_score: visited 2791 states in 0.15s
+    multi-fiber RSE failures: 48
+    states matching isolated K_k trap signature: 0
+  Strategy trap_aware_switch: visited 2744 states in 0.15s
+    multi-fiber RSE failures: 48
+    states matching isolated K_k trap signature: 0

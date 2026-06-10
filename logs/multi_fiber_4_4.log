@@ -1,0 +1,25 @@
+=== Multi-fiber RSE check, config = [4, 4] ===
+
+--- Strategy: max_gain ---
+  Built 12 edges across 2 fibers: [[1, 2, 3, 4], [1, 2, 3, 4]]
+  Identifying isolated-fiber violation signatures...
+  Identified 12 isolated-fiber violation signatures.
+  Strategy=max_gain: visited 58763 states in 4.99s.
+    states where multi-fiber RSE fails: 30808
+    states matching isolated-fiber violation signature: 12320
+
+--- Strategy: dominant ---
+  Built 12 edges across 2 fibers: [[1, 2, 3, 4], [1, 2, 3, 4]]
+  Identifying isolated-fiber violation signatures...
+  Identified 12 isolated-fiber violation signatures.
+  Strategy=dominant: visited 56203 states in 6.25s.
+    states where multi-fiber RSE fails: 29960
+    states matching isolated-fiber violation signature: 11960
+
+--- Strategy: lookahead ---
+  Built 12 edges across 2 fibers: [[1, 2, 3, 4], [1, 2, 3, 4]]
+  Identifying isolated-fiber violation signatures...
+  Identified 12 isolated-fiber violation signatures.
+  Strategy=lookahead: visited 56363 states in 10.16s.
+    states where multi-fiber RSE fails: 29960
+    states matching isolated-fiber violation signature: 11960

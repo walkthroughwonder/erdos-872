@@ -1,0 +1,35 @@
+[
+  {
+    "name": "[4, 3]",
+    "n_edges": 9,
+    "n_vertices": 9,
+    "states_seen": 7473,
+    "pre_maker_checked": 4514,
+    "terminal_states": 2959,
+    "min_chosen_delta": 0,
+    "max_chosen_delta": 11,
+    "delta_hist": {
+      "0": 2142,
+      "2": 123,
+      "3": 279,
+      "4": 1616,
+      "5": 119,
+      "6": 81,
+      "7": 39,
+      "8": 82,
+      "9": 18,
+      "11": 15
+    },
+    "no_nonnegative_states": 0,
+    "first_bad_state": null,
+    "first_bad_move": null,
+    "first_bad_reply": null,
+    "min_terminal_score": 2,
+    "max_terminal_score": 9,
+    "M_over_8": 1.125,
+    "S_fin_ge_M_over_8": true,
+    "exhausted": true,
+    "cap_hit": false,
+    "seconds": 87.86403942108154
+  }
+]

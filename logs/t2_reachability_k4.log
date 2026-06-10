@@ -1,0 +1,41 @@
+=== T2 reachability check for k=4 fiber ===
+
+Step 1: identifying all raw-RSE violation states...
+  216 violation states identified.
+
+--- Strategy: max_gain ---
+  Reachable pre-Maker states under this strategy + adversarial Breaker: 95
+  Violation states reached: 32  (in 0.00s)
+  -> Strategy 'max_gain' is NOT a witness for RSE on T2-states.
+  Sample play reaching first violation:
+Play sequence:
+  Round 0: C=[] D_V=[] D_E=[] K=[] S=0 capt_edges=[] Q=6 live=[(0, (0, 1, 2), 1), (1, (0, 1, 3), 1), (2, (0, 1, 4), 1), (3, (0, 2, 3), 1), (4, (0, 2, 4), 1), (5, (0, 3, 4), 1)]
+    -> Maker: ('M', 'capture', 0), Breaker: ('B', 'del_e', 1)
+  Round 1: C=[0, 1, 2] D_V=[] D_E=[1] K=[] S=1 capt_edges=[0] Q=22 live=[(2, (0, 1, 4), 4), (3, (0, 2, 3), 4), (4, (0, 2, 4), 4), (5, (0, 3, 4), 2)]
+    -> Maker: ('M', 'capture', 5), Breaker: ('B', 'del_e', 2)
+  Round 2: C=[0, 1, 2, 3, 4] D_V=[] D_E=[1, 2] K=[] S=2 capt_edges=[0, 5] Q=32 live=[(3, (0, 2, 3), 8), (4, (0, 2, 4), 8)]
+
+--- Strategy: dominant ---
+  Reachable pre-Maker states under this strategy + adversarial Breaker: 95
+  Violation states reached: 32  (in 0.00s)
+  -> Strategy 'dominant' is NOT a witness for RSE on T2-states.
+  Sample play reaching first violation:
+Play sequence:
+  Round 0: C=[] D_V=[] D_E=[] K=[] S=0 capt_edges=[] Q=6 live=[(0, (0, 1, 2), 1), (1, (0, 1, 3), 1), (2, (0, 1, 4), 1), (3, (0, 2, 3), 1), (4, (0, 2, 4), 1), (5, (0, 3, 4), 1)]
+    -> Maker: ('M', 'capture', 0), Breaker: ('B', 'del_e', 1)
+  Round 1: C=[0, 1, 2] D_V=[] D_E=[1] K=[] S=1 capt_edges=[0] Q=22 live=[(2, (0, 1, 4), 4), (3, (0, 2, 3), 4), (4, (0, 2, 4), 4), (5, (0, 3, 4), 2)]
+    -> Maker: ('M', 'capture', 5), Breaker: ('B', 'del_e', 2)
+  Round 2: C=[0, 1, 2, 3, 4] D_V=[] D_E=[1, 2] K=[] S=2 capt_edges=[0, 5] Q=32 live=[(3, (0, 2, 3), 8), (4, (0, 2, 4), 8)]
+
+--- Strategy: lookahead ---
+  Reachable pre-Maker states under this strategy + adversarial Breaker: 99
+  Violation states reached: 32  (in 0.01s)
+  -> Strategy 'lookahead' is NOT a witness for RSE on T2-states.
+  Sample play reaching first violation:
+Play sequence:
+  Round 0: C=[] D_V=[] D_E=[] K=[] S=0 capt_edges=[] Q=6 live=[(0, (0, 1, 2), 1), (1, (0, 1, 3), 1), (2, (0, 1, 4), 1), (3, (0, 2, 3), 1), (4, (0, 2, 4), 1), (5, (0, 3, 4), 1)]
+    -> Maker: ('M', 'capture', 0), Breaker: ('B', 'del_e', 1)
+  Round 1: C=[0, 1, 2] D_V=[] D_E=[1] K=[] S=1 capt_edges=[0] Q=22 live=[(2, (0, 1, 4), 4), (3, (0, 2, 3), 4), (4, (0, 2, 4), 4), (5, (0, 3, 4), 2)]
+    -> Maker: ('M', 'capture', 5), Breaker: ('B', 'del_e', 2)
+  Round 2: C=[0, 1, 2, 3, 4] D_V=[] D_E=[1, 2] K=[] S=2 capt_edges=[0, 5] Q=32 live=[(3, (0, 2, 3), 8), (4, (0, 2, 4), 8)]
+

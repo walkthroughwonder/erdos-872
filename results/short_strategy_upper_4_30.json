@@ -1,0 +1,164 @@
+{
+  "4": {
+    "pi_n": 2,
+    "sat_S_upper": 2,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "5": {
+    "pi_n": 3,
+    "sat_S_upper": 3,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "6": {
+    "pi_n": 3,
+    "sat_S_upper": 3,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "7": {
+    "pi_n": 4,
+    "sat_S_upper": 4,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "8": {
+    "pi_n": 4,
+    "sat_S_upper": 4,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "9": {
+    "pi_n": 4,
+    "sat_S_upper": 4,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "10": {
+    "pi_n": 4,
+    "sat_S_upper": 4,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "11": {
+    "pi_n": 5,
+    "sat_S_upper": 5,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "12": {
+    "pi_n": 5,
+    "sat_S_upper": 5,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "13": {
+    "pi_n": 6,
+    "sat_S_upper": 6,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "14": {
+    "pi_n": 6,
+    "sat_S_upper": 6,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "15": {
+    "pi_n": 6,
+    "sat_S_upper": 6,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "16": {
+    "pi_n": 6,
+    "sat_S_upper": 6,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "17": {
+    "pi_n": 7,
+    "sat_S_upper": 7,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "18": {
+    "pi_n": 7,
+    "sat_S_upper": 7,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "19": {
+    "pi_n": 8,
+    "sat_S_upper": 8,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "20": {
+    "pi_n": 8,
+    "sat_S_upper": 8,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "21": {
+    "pi_n": 8,
+    "sat_S_upper": 8,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "22": {
+    "pi_n": 8,
+    "sat_S_upper": 8,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "23": {
+    "pi_n": 9,
+    "sat_S_upper": 9,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "24": {
+    "pi_n": 9,
+    "sat_S_upper": 9,
+    "gap": 0,
+    "time_s": 0.0
+  },
+  "25": {
+    "pi_n": 9,
+    "sat_S_upper": 10,
+    "gap": 1,
+    "time_s": 0.0
+  },
+  "26": {
+    "pi_n": 9,
+    "sat_S_upper": 10,
+    "gap": 1,
+    "time_s": 0.0
+  },
+  "27": {
+    "pi_n": 9,
+    "sat_S_upper": 10,
+    "gap": 1,
+    "time_s": 0.0
+  },
+  "28": {
+    "pi_n": 9,
+    "sat_S_upper": 10,
+    "gap": 1,
+    "time_s": 0.0
+  },
+  "29": {
+    "pi_n": 10,
+    "sat_S_upper": 11,
+    "gap": 1,
+    "time_s": 0.0
+  },
+  "30": {
+    "pi_n": 10,
+    "sat_S_upper": 11,
+    "gap": 1,
+    "time_s": 0.0
+  }
+}

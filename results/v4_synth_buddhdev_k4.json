@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Buddhdev_K4_q_13_17_19_23",
+    "n_edges": 6,
+    "n_vertices": 5,
+    "states_seen": 195,
+    "pre_maker_checked": 97,
+    "terminal_states": 98,
+    "min_chosen_delta": 0,
+    "max_chosen_delta": 8,
+    "delta_hist": {
+      "0": 56,
+      "2": 9,
+      "4": 18,
+      "5": 2,
+      "6": 2,
+      "8": 10
+    },
+    "no_nonnegative_states": 0,
+    "first_bad_state": null,
+    "first_bad_move": null,
+    "first_bad_reply": null,
+    "min_terminal_score": 1,
+    "max_terminal_score": 6,
+    "M_over_8": 0.75,
+    "S_fin_ge_M_over_8": true,
+    "exhausted": true,
+    "cap_hit": false,
+    "seconds": 0.19172215461730957
+  }
+]

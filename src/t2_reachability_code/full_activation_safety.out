@@ -1,0 +1,40 @@
+=== Full activation graph safety check for K5 pair activations ===
+n=100000000000000000000
+delta=1/8
+Y_floor=316
+|P_Y|=64 odd primes
+P_Y first/last=(3, 5, 7, 11, 13, 17, 19, 23) ... (271, 277, 281, 283, 293, 307, 311, 313)
+K5=(101, 103, 107, 109, 113)
+q=4806305873305829
+q_membership_all_10=True
+pair_graph_edges=2016
+all_pair_edges_positive_by_lower_bound=True
+min_lower_weight_bound=1.068819e+13
+max_upper_weight_bound=1.930402e+17
+
+Manuscript activation safety test at initial full-graph state:
+  safe requires Maker gain >= every legal Breaker reply loss.
+  The legal Breaker reply tested here is vertex deletion v=3.
+
+pair, maker_gain_upper, breaker_loss_lower_at_v3, margin_loss_minus_gain, ratio
+(101, 103), 1.224271e+16, 4.369887e+16, 3.145616e+16, 3.569379
+(101, 107), 1.201946e+16, 4.368563e+16, 3.166617e+16, 3.634574
+(101, 109), 1.191387e+16, 4.367937e+16, 3.176550e+16, 3.666262
+(101, 113), 1.171370e+16, 4.366751e+16, 3.195381e+16, 3.727901
+(103, 107), 1.190155e+16, 4.367862e+16, 3.177707e+16, 3.669994
+(103, 109), 1.179603e+16, 4.367236e+16, 3.187633e+16, 3.702294
+(103, 113), 1.159598e+16, 4.366050e+16, 3.206452e+16, 3.765141
+(107, 109), 1.157331e+16, 4.365912e+16, 3.208581e+16, 3.772396
+(107, 113), 1.137351e+16, 4.364726e+16, 3.227376e+16, 3.837626
+(109, 113), 1.126828e+16, 4.364100e+16, 3.237272e+16, 3.872907
+
+NEG: every K5 pair is unsafe as the first activation edge in the full activation graph.
+Therefore no ordering can secure all ten K5 pairs as safe activations, because the first move of any such ordering already fails.
+
+Reduced exact-count sanity check:
+  n_small=100000000, y_small=31, k5_like=(13,17,19,23,29)
+  (13, 17): exact_gain=73723.250, exact_loss_delete_3=123696.750, margin=49973.500
+  (13, 19): exact_gain=70057.625, exact_loss_delete_3=122841.750, margin=52784.125
+  (13, 23): exact_gain=64604.750, exact_loss_delete_3=121576.375, margin=56971.625
+  (13, 29): exact_gain=59011.125, exact_loss_delete_3=120312.625, margin=61301.500
+  (17, 19): exact_gain=60681.625, exact_loss_delete_3=120401.000, margin=59719.375

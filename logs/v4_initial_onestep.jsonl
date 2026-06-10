@@ -1,0 +1,5 @@
+{"cfg": [5], "n_edges": 10, "Q0": 10, "chosen": ["capture", 0, "((0, 0), (0, 1), (0, 2))"], "worst_delta": 16, "worst_reply": "('del_v', (0, 3))", "Q_after_maker": 38}
+{"cfg": [7], "n_edges": 21, "Q0": 21, "chosen": ["capture", 0, "((0, 0), (0, 1), (0, 2))"], "worst_delta": 31, "worst_reply": "('del_v', (0, 3))", "Q_after_maker": 68}
+{"cfg": [5, 4], "n_edges": 16, "Q0": 16, "chosen": ["capture", 0, "((0, 0), (0, 1), (0, 2))"], "worst_delta": 16, "worst_reply": "('del_v', (0, 3))", "Q_after_maker": 44}
+{"cfg": [4, 4], "n_edges": 12, "Q0": 12, "chosen": ["capture", 0, "((0, 0), (0, 1), (0, 2))"], "worst_delta": 10, "worst_reply": "('del_v', (0, 3))", "Q_after_maker": 32}
+{"cfg": [4, 3, 2], "n_edges": 10, "Q0": 10, "chosen": ["capture", 0, "((0, 0), (0, 1), (0, 2))"], "worst_delta": 10, "worst_reply": "('del_v', (0, 3))", "Q_after_maker": 30}

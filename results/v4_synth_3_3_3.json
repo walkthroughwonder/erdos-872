@@ -1,0 +1,32 @@
+[
+  {
+    "name": "[3, 3, 3]",
+    "n_edges": 9,
+    "n_vertices": 12,
+    "states_seen": 5872,
+    "pre_maker_checked": 3269,
+    "terminal_states": 2603,
+    "min_chosen_delta": 0,
+    "max_chosen_delta": 7,
+    "delta_hist": {
+      "0": 1485,
+      "2": 114,
+      "3": 249,
+      "4": 1192,
+      "5": 151,
+      "6": 36,
+      "7": 42
+    },
+    "no_nonnegative_states": 0,
+    "first_bad_state": null,
+    "first_bad_move": null,
+    "first_bad_reply": null,
+    "min_terminal_score": 3,
+    "max_terminal_score": 9,
+    "M_over_8": 1.125,
+    "S_fin_ge_M_over_8": true,
+    "exhausted": true,
+    "cap_hit": false,
+    "seconds": 162.70685243606567
+  }
+]

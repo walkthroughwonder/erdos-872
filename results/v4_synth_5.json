@@ -1,0 +1,31 @@
+[
+  {
+    "name": "[5]",
+    "n_edges": 10,
+    "n_vertices": 6,
+    "states_seen": 6416,
+    "pre_maker_checked": 4068,
+    "terminal_states": 2348,
+    "min_chosen_delta": -8,
+    "max_chosen_delta": 16,
+    "delta_hist": {
+      "-8": 3774,
+      "0": 128,
+      "4": 144,
+      "12": 6,
+      "14": 15,
+      "16": 1
+    },
+    "no_nonnegative_states": 3774,
+    "first_bad_state": "C=[(0, 0), (0, 1), (0, 2), (0, 4), (0, 5)] D_V=[(0, 3)] D_E=[2] K=[] captured_edges=[0, 9] S=2 Q=40 live=[(3, ((0, 0), (0, 1), (0, 5)), 8), (5, ((0, 0), (0, 2), (0, 4)), 8), (6, ((0, 0), (0, 2), (0, 5)), 8)]",
+    "first_bad_move": "('capture', 3, ((0, 0), (0, 1), (0, 5)), 'worst_delta', -8)",
+    "first_bad_reply": "('del_e', 5)",
+    "min_terminal_score": 4,
+    "max_terminal_score": 10,
+    "M_over_8": 1.25,
+    "S_fin_ge_M_over_8": true,
+    "exhausted": true,
+    "cap_hit": false,
+    "seconds": 1.6468703746795654
+  }
+]

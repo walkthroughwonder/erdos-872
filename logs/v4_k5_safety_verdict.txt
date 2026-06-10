@@ -1,0 +1,4 @@
+K5 safety-game verdict (from make_strategy_v4_safety in k4_avoidance_v4.py):
+initial_state_winning_for_per_round_Q_monotone_safety = False
+winning_move = None
+memo_states_solved = CacheInfo(hits=3, misses=18, maxsize=None, currsize=18)
