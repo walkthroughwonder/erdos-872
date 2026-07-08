@@ -1,0 +1,101 @@
+=== Multi-step activation safety search with exact-or-Dusart bounds ===
+n=100000000000000000000
+delta=1/8
+Y_floor=316
+|P_Y|=64 odd primes
+P_Y first/last=(3, 5, 7, 11, 13, 17, 19, 23) ... (271, 277, 281, 283, 293, 307, 311, 313)
+pair_graph_edges=2016
+K5=(101, 103, 107, 109, 113)
+q=4806305873305829
+q_membership_all_10=True
+
+Weight-count backend:
+  exact_primecount_available=False
+  backend=Dusart 2010 explicit pi bounds
+  interval_model=B_ac primes with n/(2ac) < b <= n/(ac)
+  distinct_pair_intervals=2016
+  exact_edge_counts=0
+  min_lower_weight=1.493240e+13
+  max_upper_weight=7.778360e+16
+  max_absolute_bound_width=5.653111e+14
+  max_relative_bound_width=9.274231e-03
+  sample_intervals:
+    (3, 5): lo_exclusive=3333333333333333333 hi_inclusive=6666666666666666666 lower=7.721829e+16 upper=7.778360e+16
+    (3, 7): lo_exclusive=2380952380952380952 hi_inclusive=4761904761904761904 lower=5.558888e+16 upper=5.599921e+16
+    (101, 103): lo_exclusive=4806305873305777 hi_inclusive=9612611746611554 lower=1.312059e+14 upper=1.323490e+14
+    (109, 113): lo_exclusive=4059430056020134 hi_inclusive=8118860112040269 lower=1.113299e+14 upper=1.123046e+14
+    (311, 313): lo_exclusive=513647617188703 hi_inclusive=1027295234377407 lower=1.493240e+13 upper=1.507153e+13
+
+Initial-state diagnostics:
+  live_edges=2016
+  certified_safe_moves=64
+  certified_unsafe_moves=1951
+  indeterminate_moves=1
+  mid_estimate_safe_moves=64
+  top certified safe initial moves:
+    (3, 101) -- gain_lo=6.461783e+16 gain_hi=6.511307e+16 loss_lo=4.997239e+16 loss_hi=5.035272e+16 margin=1.426511e+16 worst_hi=('del_v', 5)
+    (3, 103) -- gain_lo=6.452351e+16 gain_hi=6.501801e+16 loss_lo=4.996648e+16 loss_hi=5.034676e+16 margin=1.417675e+16 worst_hi=('del_v', 5)
+    (3, 107) -- gain_lo=6.434529e+16 gain_hi=6.483839e+16 loss_lo=4.995532e+16 loss_hi=5.033551e+16 margin=1.400978e+16 worst_hi=('del_v', 5)
+    (3, 109) -- gain_lo=6.426101e+16 gain_hi=6.475345e+16 loss_lo=4.995004e+16 loss_hi=5.033019e+16 margin=1.393082e+16 worst_hi=('del_v', 5)
+    (3, 113) -- gain_lo=6.410127e+16 gain_hi=6.459245e+16 loss_lo=4.994004e+16 loss_hi=5.032011e+16 margin=1.378116e+16 worst_hi=('del_v', 5)
+    (3, 5) -- gain_lo=1.478880e+17 gain_hi=1.490033e+17 loss_lo=4.116133e+16 loss_hi=4.147593e+16 margin=1.064121e+17 worst_hi=('del_v', 7)
+    (3, 7) -- gain_lo=1.243549e+17 gain_hi=1.252980e+17 loss_lo=5.387974e+16 loss_hi=5.428910e+16 margin=7.006579e+16 worst_hi=('del_v', 5)
+    (3, 11) -- gain_lo=1.019595e+17 gain_hi=1.027372e+17 loss_lo=5.237436e+16 loss_hi=5.277270e+16 margin=4.918680e+16 worst_hi=('del_v', 5)
+    (3, 13) -- gain_lo=9.575072e+16 gain_hi=9.648225e+16 loss_lo=5.196600e+16 loss_hi=5.236133e+16 margin=4.338939e+16 worst_hi=('del_v', 5)
+    (3, 17) -- gain_lo=8.759006e+16 gain_hi=8.826057e+16 loss_lo=5.143489e+16 loss_hi=5.182627e+16 margin=3.576378e+16 worst_hi=('del_v', 5)
+    (3, 19) -- gain_lo=8.476314e+16 gain_hi=8.541241e+16 loss_lo=5.125236e+16 loss_hi=5.164238e+16 margin=3.312075e+16 worst_hi=('del_v', 5)
+    (3, 23) -- gain_lo=8.054842e+16 gain_hi=8.116591e+16 loss_lo=5.098158e+16 loss_hi=5.136958e+16 margin=2.917884e+16 worst_hi=('del_v', 5)
+    (3, 29) -- gain_lo=7.636100e+16 gain_hi=7.694673e+16 loss_lo=5.071414e+16 loss_hi=5.110013e+16 margin=2.526087e+16 worst_hi=('del_v', 5)
+    (3, 31) -- gain_lo=7.531781e+16 gain_hi=7.589560e+16 loss_lo=5.064776e+16 loss_hi=5.103325e+16 margin=2.428456e+16 worst_hi=('del_v', 5)
+    (3, 37) -- gain_lo=7.285187e+16 gain_hi=7.341083e+16 loss_lo=5.049123e+16 loss_hi=5.087553e+16 margin=2.197634e+16 worst_hi=('del_v', 5)
+    (3, 41) -- gain_lo=7.160144e+16 gain_hi=7.215082e+16 loss_lo=5.041206e+16 loss_hi=5.079576e+16 margin=2.080568e+16 worst_hi=('del_v', 5)
+    (3, 43) -- gain_lo=7.106181e+16 gain_hi=7.160705e+16 loss_lo=5.037793e+16 loss_hi=5.076137e+16 margin=2.030044e+16 worst_hi=('del_v', 5)
+    (3, 47) -- gain_lo=7.011784e+16 gain_hi=7.065582e+16 loss_lo=5.031830e+16 loss_hi=5.070129e+16 margin=1.941655e+16 worst_hi=('del_v', 5)
+    (3, 53) -- gain_lo=6.896449e+16 gain_hi=6.949357e+16 loss_lo=5.024555e+16 loss_hi=5.062798e+16 margin=1.833652e+16 worst_hi=('del_v', 5)
+    (3, 59) -- gain_lo=6.804187e+16 gain_hi=6.856381e+16 loss_lo=5.018743e+16 loss_hi=5.056941e+16 margin=1.747246e+16 worst_hi=('del_v', 5)
+  top margin initial moves, certified or not:
+    (3, 5) -- gain_lo=1.478880e+17 gain_hi=1.490033e+17 loss_lo=4.116133e+16 loss_hi=4.147593e+16 margin=1.064121e+17 worst_hi=('del_v', 7)
+    (3, 7) -- gain_lo=1.243549e+17 gain_hi=1.252980e+17 loss_lo=5.387974e+16 loss_hi=5.428910e+16 margin=7.006579e+16 worst_hi=('del_v', 5)
+    (3, 11) -- gain_lo=1.019595e+17 gain_hi=1.027372e+17 loss_lo=5.237436e+16 loss_hi=5.277270e+16 margin=4.918680e+16 worst_hi=('del_v', 5)
+    (3, 13) -- gain_lo=9.575072e+16 gain_hi=9.648225e+16 loss_lo=5.196600e+16 loss_hi=5.236133e+16 margin=4.338939e+16 worst_hi=('del_v', 5)
+    (3, 17) -- gain_lo=8.759006e+16 gain_hi=8.826057e+16 loss_lo=5.143489e+16 loss_hi=5.182627e+16 margin=3.576378e+16 worst_hi=('del_v', 5)
+    (3, 19) -- gain_lo=8.476314e+16 gain_hi=8.541241e+16 loss_lo=5.125236e+16 loss_hi=5.164238e+16 margin=3.312075e+16 worst_hi=('del_v', 5)
+    (3, 23) -- gain_lo=8.054842e+16 gain_hi=8.116591e+16 loss_lo=5.098158e+16 loss_hi=5.136958e+16 margin=2.917884e+16 worst_hi=('del_v', 5)
+    (3, 29) -- gain_lo=7.636100e+16 gain_hi=7.694673e+16 loss_lo=5.071414e+16 loss_hi=5.110013e+16 margin=2.526087e+16 worst_hi=('del_v', 5)
+    (3, 31) -- gain_lo=7.531781e+16 gain_hi=7.589560e+16 loss_lo=5.064776e+16 loss_hi=5.103325e+16 margin=2.428456e+16 worst_hi=('del_v', 5)
+    (3, 37) -- gain_lo=7.285187e+16 gain_hi=7.341083e+16 loss_lo=5.049123e+16 loss_hi=5.087553e+16 margin=2.197634e+16 worst_hi=('del_v', 5)
+    (3, 41) -- gain_lo=7.160144e+16 gain_hi=7.215082e+16 loss_lo=5.041206e+16 loss_hi=5.079576e+16 margin=2.080568e+16 worst_hi=('del_v', 5)
+    (3, 43) -- gain_lo=7.106181e+16 gain_hi=7.160705e+16 loss_lo=5.037793e+16 loss_hi=5.076137e+16 margin=2.030044e+16 worst_hi=('del_v', 5)
+  K5 initial moves:
+    (101, 103) K5 gain_lo=4.899164e+15 gain_hi=4.939760e+15 loss_lo=6.063598e+16 loss_hi=6.109885e+16 margin=-5.619969e+16 worst_hi=('del_v', 3)
+    (101, 107) K5 gain_lo=4.809836e+15 gain_hi=4.849711e+15 loss_lo=6.061760e+16 loss_hi=6.108034e+16 margin=-5.627050e+16 worst_hi=('del_v', 3)
+    (101, 109) K5 gain_lo=4.767585e+15 gain_hi=4.807119e+15 loss_lo=6.060892e+16 loss_hi=6.107158e+16 margin=-5.630400e+16 worst_hi=('del_v', 3)
+    (101, 113) K5 gain_lo=4.687488e+15 gain_hi=4.726376e+15 loss_lo=6.059245e+16 loss_hi=6.105499e+16 margin=-5.636750e+16 worst_hi=('del_v', 3)
+    (103, 107) K5 gain_lo=4.762656e+15 gain_hi=4.802152e+15 loss_lo=6.060788e+16 loss_hi=6.107054e+16 margin=-5.630788e+16 worst_hi=('del_v', 3)
+    (103, 109) K5 gain_lo=4.720432e+15 gain_hi=4.759587e+15 loss_lo=6.059919e+16 loss_hi=6.106178e+16 margin=-5.634135e+16 worst_hi=('del_v', 3)
+    (103, 113) K5 gain_lo=4.640386e+15 gain_hi=4.678894e+15 loss_lo=6.058273e+16 loss_hi=6.104519e+16 margin=-5.640481e+16 worst_hi=('del_v', 3)
+    (107, 109) K5 gain_lo=4.631316e+15 gain_hi=4.669753e+15 loss_lo=6.058082e+16 loss_hi=6.104327e+16 margin=-5.641195e+16 worst_hi=('del_v', 3)
+    (107, 113) K5 gain_lo=4.551366e+15 gain_hi=4.589157e+15 loss_lo=6.056435e+16 loss_hi=6.102668e+16 margin=-5.647531e+16 worst_hi=('del_v', 3)
+    (109, 113) K5 gain_lo=4.509261e+15 gain_hi=4.546713e+15 loss_lo=6.055566e+16 loss_hi=6.101792e+16 margin=-5.650866e+16 worst_hi=('del_v', 3)
+
+Greedy certified Maker-only path:
+  status=TIMEOUT
+  steps=2
+  captured_vertices=4
+  claimed_edges=2
+  claimed_k5_edges=0 / 10
+  all_k5_certified_safe_at_step=-1
+  sequence:
+    001  (3, 101) -- gain_lo=6.461783e+16 gain_hi=6.511307e+16 loss_lo=4.997239e+16 loss_hi=5.035272e+16 margin=1.426511e+16 worst_hi=('del_v', 5)
+    002  (5, 103) -- gain_lo=5.440935e+16 gain_hi=5.482582e+16 loss_lo=4.160675e+16 loss_hi=4.192496e+16 margin=1.248440e+16 worst_hi=('del_v', 7)
+
+Best-first certified Maker-only search:
+  status=NEG_NO_POS_WITHIN_BUDGET
+  wall_clock_seconds=571.64
+  expansions=38
+  seen_states=359
+  steps=38
+  captured_vertices=40
+  claimed_edges=38
+  claimed_k5_edges=0 / 10
+  all_k5_certified_safe_at_step=-1
