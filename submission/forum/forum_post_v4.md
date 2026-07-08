@@ -1,24 +1,26 @@
-<!-- Superseded by forum_post_v4.md on 2026-07-08 (after PR #4226 merged). -->
-
 # Forum post: erdosproblems.com/forum/thread/872
 
-**Subject**: Lean formalization draft + computational analysis (negative result on K_5 q-fibers, conditional on Buddhdev's framework)
+**Subject**: Lean statement file for #872 merged + computational analysis (negative result on K_5 q-fibers, conditional on Buddhdev's framework)
 
 ---
 
 Two small contributions on this thread, both with AI disclosure up front.
 
-## 1. Lean statement file for #872
+## 1. Lean statement file for #872 (merged)
 
-I have opened [PR #4226 on google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures/pull/4226) adding `ErdosProblems/872.lean`. The open statements have `sorry` proofs; the trivial bound and two supporting lemmas are fully proved. The file covers:
+[PR #4226 on google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures/pull/4226) has been merged (2026-07-02), adding [FormalConjectures/ErdosProblems/872.lean](https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/872.lean) and closing the tracking issue #994. The open statements have `sorry` proofs; the trivial bound and two supporting lemmas are fully proved. The merged file contains:
 
-- The two asymptotic targets in the original problem (ε·n and (1-ε)·n/2)
-- The trivial upper bound L(n) ≤ n-1, with a complete proof via the fuel-recursion bound
-- The question raised earlier in this thread (how small can a maximal primitive subset be?), stated structurally: must every maximal primitive subset of {2,...,n} have size at least π(n)?
+- `erdos_872.parts.i` (research open): the weak form, whether there exists ε > 0 with L(n) ≥ ε·n for all sufficiently large n
+- `erdos_872.parts.ii` (research open): the strong form, whether L(n) ≥ (1-ε)·n/2 eventually for every ε > 0, with a status note recording the Shortener strategies discussed in this thread ((23/48 + o(1))·n and the claimed 0.19·n)
+- `erdos_872.trivial_upper_bound` (textbook, fully proved): L(n) ≤ n-1, via the fuel-recursion cardinality bound `gameValueAux_le`
+- `erdos_872.variants.prime_question` (research open): the question raised earlier in this thread, stated structurally: must every maximal primitive subset of {2,...,n} have size at least π(n)?
+- The game semantics: `L n` is defined by a genuine finite minimax recursion (positions, legal moves, fuel-bounded `gameValueAux`), not an uninterpreted placeholder, with API lemmas `mem_legalMoves` and `gameValueAux_le` proved
 
-I deliberately left Buddhdev's conditional c_δ · n · (log log n)² / log n bound out of this first PR: the manuscript is not yet public, so reviewers could not evaluate the citation, and a faithful formal statement of the conditional form needs the restricted safe-edge hypothesis formalized. It can follow as a second PR once the manuscript is available.
+The file fixes Prolonger to move first (following the convention in this thread) and documents why the choice matters: computational data suggests the Shortener-first value tracks π(n) while the Prolonger-first value grows linearly.
 
-In a keyword scan I did not find another game-value formalization in the repo, so reviewers will likely have opinions on how to formalize the game semantics. Feedback welcome on the formalization (especially from @Pommeret who self-identified as working on formalization).
+Buddhdev's conditional c_δ · n · (log log n)² / log n bound is not in the merged file. The manuscript is not yet public, so the citation could not be evaluated, and a faithful formal statement of the conditional form needs the restricted safe-edge hypothesis formalized. It can follow as a second PR once the manuscript is available.
+
+Review was straightforward: mo271 approved, with one note (docstrings should be LaTeX markdown) addressed in a follow-up commit before merge. If anyone spots issues with the game formalization (especially @Pommeret, who self-identified as working on formalization), corrections via a follow-up PR are easy.
 
 ## 2. Computational analysis of Buddhdev's manuscript framework
 
