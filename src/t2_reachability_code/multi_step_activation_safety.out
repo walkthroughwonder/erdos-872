@@ -1,0 +1,65 @@
+=== Multi-step activation safety search for the concrete K5 witness ===
+n=100000000000000000000
+delta=1/8
+Y_floor=316
+|P_Y|=64 odd primes
+P_Y first/last=(3, 5, 7, 11, 13, 17, 19, 23) ... (271, 277, 281, 283, 293, 307, 311, 313)
+pair_graph_edges=2016
+K5=(101, 103, 107, 109, 113)
+q=4806305873305829
+q_membership_all_10=True
+min_lower_weight_bound=1.068819e+13
+max_upper_weight_bound=1.930402e+17
+
+Initial-state diagnostics:
+  live_edges=2016
+  certified_safe_moves=1
+  certified_unsafe_moves=1703
+  mid_estimate_safe_moves=64
+  top certified safe initial moves:
+    (3, 5) -- gain_lo=1.066196e+17 loss_hi=1.028865e+17 margin=3.733091e+15 worst_hi=('del_v', 7)
+  K5 initial moves:
+    (101, 103) K5 gain_lo=3.521317e+15 loss_hi=1.515657e+17 margin=-1.480444e+17 worst_hi=('del_v', 3)
+    (101, 107) K5 gain_lo=3.457052e+15 loss_hi=1.515198e+17 margin=-1.480627e+17 worst_hi=('del_v', 3)
+    (101, 109) K5 gain_lo=3.426657e+15 loss_hi=1.514981e+17 margin=-1.480714e+17 worst_hi=('del_v', 3)
+    (101, 113) K5 gain_lo=3.369037e+15 loss_hi=1.514569e+17 margin=-1.480879e+17 worst_hi=('del_v', 3)
+    (103, 107) K5 gain_lo=3.423110e+15 loss_hi=1.514955e+17 margin=-1.480724e+17 worst_hi=('del_v', 3)
+    (103, 109) K5 gain_lo=3.392733e+15 loss_hi=1.514738e+17 margin=-1.480810e+17 worst_hi=('del_v', 3)
+    (103, 113) K5 gain_lo=3.335150e+15 loss_hi=1.514326e+17 margin=-1.480975e+17 worst_hi=('del_v', 3)
+    (107, 109) K5 gain_lo=3.328622e+15 loss_hi=1.514278e+17 margin=-1.480992e+17 worst_hi=('del_v', 3)
+    (107, 113) K5 gain_lo=3.271107e+15 loss_hi=1.513867e+17 margin=-1.481156e+17 worst_hi=('del_v', 3)
+    (109, 113) K5 gain_lo=3.240817e+15 loss_hi=1.513650e+17 margin=-1.481242e+17 worst_hi=('del_v', 3)
+
+Greedy certified Maker-only path:
+  status=STOP_NO_CERTIFIED_SAFE_MOVE
+  steps=1
+  captured_vertices=2
+  claimed_edges=1
+  claimed_k5_edges=0 / 10
+  all_k5_certified_safe_at_step=-1
+  first_25_moves:
+    001: (3, 5) -- gain_lo=1.066196e+17 loss_hi=1.028865e+17 margin=3.733091e+15 worst_hi=('del_v', 7)
+Adversarial continuation warning:
+  first_path_step=1
+  maker_move=(3, 5)
+  deletable_k5_vertices_after_move=[101, 103, 107, 109, 113]
+  deletable_live_k5_edges_after_move=[(101, 103), (101, 107), (101, 109), (101, 113), (103, 107), (103, 109), (103, 113), (107, 109), (107, 113), (109, 113)]
+  This Maker-only sequence is not an adversarial strategy tree certificate.
+
+Best-first certified Maker-only search:
+  status=NEG_FRONTIER_EXHAUSTED
+  wall_clock_seconds=72.60
+  expansions=2
+  steps=0
+  captured_vertices=0
+  claimed_edges=0
+  claimed_k5_edges=0 / 10
+  all_k5_certified_safe_at_step=-1
+  sequence:
+NEG: no POS sequence found within the configured budget and pruning limits.
+  best_current_diagnostic=(3, 5) -- gain_lo=1.066196e+17 loss_hi=1.028865e+17 margin=3.733091e+15 worst_hi=('del_v', 7)
+
+Limitations:
+  This is a bounded heuristic search, not an exhaustive proof of exclusion.
+  A POS path here is a safe ordering certificate for the Maker-only state path, not a full adversarial strategy tree.
+  A NEG result here means no counterexample was found within budget, not that none exists.
