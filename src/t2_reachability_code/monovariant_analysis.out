@@ -1,0 +1,39 @@
+=== Monovariant analysis for K5 activation exclusion ===
+weight_backend=Dusart 2010 bounds
+pair_edges=2016 P_Y=64 K5=(101, 103, 107, 109, 113)
+Named-state diagnostics:
+  initial=PsiVector(star3_upper=6.007340922982292e+16, max_vertex_loss_upper=6.007340922982292e+16, max_edge_phi_upper=9722949533633674.0, total_uncaptured_star_upper=3.323715096496409e+17, total_live_phi_upper=1.6618575482482045e+17, low_pair_debt_upper=6924522566152070.0, best_k5_margin=-5.619968938073693e+16, best_k5_gain_lower=4899164128587603.0, k5_certified_safe_count=0)
+  after_(3,5)=PsiVector(star3_upper=0.0, max_vertex_loss_upper=4.1475934146951896e+16, max_edge_phi_upper=1.3999802579387204e+16, total_uncaptured_star_upper=3.1292561058237357e+17, total_live_phi_upper=2.3740547679092483e+17, low_pair_debt_upper=1.3016641472794656e+16, best_k5_margin=-3.5390085740350452e+16, best_k5_gain_lower=6534869362074781.0, k5_certified_safe_count=0)
+  after_prefix_(3, 101)=PsiVector(star3_upper=0.0, max_vertex_loss_upper=5.0352715382627176e+16, max_edge_phi_upper=1.9445899067267348e+16, total_uncaptured_star_upper=3.3133626420157056e+17, total_live_phi_upper=2.2715784376254787e+17, low_pair_debt_upper=2.7066652006614696e+16, best_k5_margin=-4.517460035975528e+16, best_k5_gain_lower=5784163666434309.0, k5_certified_safe_count=0)
+  after_prefix_(5, 103)=PsiVector(star3_upper=0.0, max_vertex_loss_upper=4.192495510242523e+16, max_edge_phi_upper=3.8891798134534696e+16, total_uncaptured_star_upper=3.095951268332922e+17, total_live_phi_upper=2.7951446973288035e+17, low_pair_debt_upper=4.6845893967965704e+16, best_k5_margin=-3.610924381977799e+16, best_k5_gain_lower=6240404617532554.0, k5_certified_safe_count=0)
+  after_prefix_(7, 107)=PsiVector(star3_upper=0.0, max_vertex_loss_upper=2.9785356755887084e+16, max_edge_phi_upper=3.8891798134534696e+16, total_uncaptured_star_upper=2.8413019876894704e+17, total_live_phi_upper=3.239333787783898e+17, low_pair_debt_upper=6.797260162524611e+16, best_k5_margin=-3.237637767049993e+16, best_k5_gain_lower=6515420464034770.0, k5_certified_safe_count=0)
+  after_hand_cleanup_prefix=PsiVector(star3_upper=0.0, max_vertex_loss_upper=7380212899292320.0, max_edge_phi_upper=1.1774873321658768e+16, total_uncaptured_star_upper=1.3954698821784546e+17, total_live_phi_upper=3.8710849553821005e+17, low_pair_debt_upper=1.1308766225058062e+16, best_k5_margin=-3769324872504838.0, best_k5_gain_lower=8005548449153930.0, k5_certified_safe_count=0) captured=[3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 101, 103, 107] claimed=14
+
+Exploration status: BUDGET_STOP; expansions=2; seen=41; transitions=40
+Candidate monotonicity on certified-safe Maker-only transitions:
+  star3_upper: increases=0 max_increase=0.000000e+00 max_drop=-6.007341e+16
+  max_vertex_loss_upper: increases=0 max_increase=0.000000e+00 max_drop=-2.083098e+16
+  max_edge_phi_upper: increases=39 max_increase=1.944590e+16 max_drop=-5.446096e+15
+    obstruction_example move=(5, 101) before=1.944590e+16 after=3.889180e+16 delta=1.944590e+16
+  total_uncaptured_star_upper: increases=0 max_increase=0.000000e+00 max_drop=-4.291803e+16
+  total_live_phi_upper: increases=40 max_increase=7.499525e+16 max_drop=0.000000e+00
+    obstruction_example move=(5, 7) before=2.270665e+17 after=3.020618e+17 delta=7.499525e+16
+  low_pair_debt_upper: increases=39 max_increase=2.919081e+16 max_drop=-1.341712e+16
+    obstruction_example move=(5, 7) before=2.631500e+16 after=5.550581e+16 delta=2.919081e+16
+
+K5 safety threshold diagnostics:
+  states_evaluated=41
+  states_with_any_certified_safe_k5=0
+  best_k5_margin_seen=-3.188182e+16
+  best_k5_gain_lower_seen=7.009981e+15
+  best_state_captured=[3, 5, 7, 113]
+  best_state_claimed_count=2
+  best_state_claimed_k5=0
+  best_state_psi=PsiVector(star3_upper=0.0, max_vertex_loss_upper=2.9489127491293868e+16, max_edge_phi_upper=3.8891798134534696e+16, total_uncaptured_star_upper=2.885255635808844e+17, total_live_phi_upper=3.02061766495447e+17, low_pair_debt_upper=5.550581031268113e+16, best_k5_margin=-3.188181688155213e+16, best_k5_gain_lower=7009981252982570.0, k5_certified_safe_count=0)
+  no empirical K5-safe threshold was reached, so no threshold proof can be inferred from explored data
+
+Structural verdict:
+  No proof-quality monovariant was found.
+  The single-vertex candidate fails because vertex 3 can be captured by certified safe first moves under tighter bounds.
+  The total-star candidate decreases on the sampled transitions, but total-live-phi and edge-debt increase on many sampled transitions, so these candidates do not give a structural separator from K5-safe states.
+  The dominant obstruction after the first few safe captures shifts from vertex deletion to deletion of large low-prime pair edges, so a proof would need a lexicographic invariant controlling both star losses and edge-deletion debt.
