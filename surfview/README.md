@@ -33,6 +33,15 @@ The wave field is an original sum-of-directional-waves heightfield
 raymarched in a single fragment shader (no 3D framework), with fresnel sky
 reflection, sun glint, crest foam and aerial perspective.
 
+Each break type also carries a parametric seabed — reef slab with a deep
+channel, angled point contours, sandbars with rip gaps, river-mouth wedge,
+big-wave ledge — and the swell reacts to it with surf physics: shoaling
+amplification, crests pitching forward, breaking where height exceeds
+~0.78× depth (the lip lights up and the wave rolls on as whitewater), and
+turquoise water over the shallows. The break depth scales with the day's
+swell, so bigger days break wider and further out, and sets roll through
+on a slow envelope with lulls between them.
+
 ## Running it
 
 It's a fully static app — no build step, no keys:

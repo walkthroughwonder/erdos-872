@@ -275,6 +275,7 @@ function enterSim(spot, c) {
     sunElevRad: sun.elev,
     sunAzimRelRad: (rel(azDeg) * Math.PI) / 180,
     cloudCover: c.cloudCover,
+    breakType: spot.type,
   };
 
   try {
