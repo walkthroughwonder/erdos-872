@@ -252,6 +252,30 @@ html, body {
 }
 .hud-hint { color: #9fc0d8; margin-left: auto; }
 
+#dpad {
+  position: absolute;
+  left: 16px;
+  bottom: 64px;
+  display: grid;
+  grid-template-areas: ". f u" "l b r" ". . d";
+  gap: 6px;
+  pointer-events: none;
+}
+#dpad button {
+  pointer-events: auto;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(10,20,30,0.45);
+  color: #dceefc;
+  font-size: 15px;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  backdrop-filter: blur(3px);
+}
+#dpad button:active { background: rgba(53,195,232,0.45); }
+
 /* ------------------------------------------------------------ responsive */
 @media (max-width: 760px) {
   #app { flex-direction: column; }

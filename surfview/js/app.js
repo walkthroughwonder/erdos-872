@@ -304,9 +304,26 @@ function enterSim(spot, c) {
       <span><b>${mToFt(c.waveHeightM).toFixed(1)} ft</b> @ ${Math.round(c.periodS)}s from ${compass(c.swellFromDeg)}</span>
       <span>wind <b>${a.windKts.toFixed(0)} kts</b> ${compass(c.windFromDeg)} (${a.offshore ? "offshore" : "onshore"})</span>
       ${c.waterTempC != null ? `<span>water <b>${c.waterTempC.toFixed(0)}°C</b></span>` : ""}
-      <span class="hud-hint">drag to look around</span>
+      <span class="hud-hint">drag look · WASD move · Q/E height · Shift fast</span>
+    </div>
+    <div id="dpad">
+      <button data-mv="fwd"   style="grid-area:f" aria-label="Forward">▲</button>
+      <button data-mv="left"  style="grid-area:l" aria-label="Left">◀</button>
+      <button data-mv="back"  style="grid-area:b" aria-label="Back">▼</button>
+      <button data-mv="right" style="grid-area:r" aria-label="Right">▶</button>
+      <button data-mv="up"    style="grid-area:u" aria-label="Rise">✚</button>
+      <button data-mv="down"  style="grid-area:d" aria-label="Descend">▬</button>
     </div>`;
   $("#exit-sim").addEventListener("click", exitSim);
+  document.querySelectorAll("#dpad button").forEach(btn => {
+    const mv = btn.dataset.mv;
+    const on = (e) => { e.preventDefault(); state.sim.setMove(mv, true); };
+    const off = () => state.sim.setMove(mv, false);
+    btn.addEventListener("pointerdown", on);
+    btn.addEventListener("pointerup", off);
+    btn.addEventListener("pointerleave", off);
+    btn.addEventListener("pointercancel", off);
+  });
 }
 
 function exitSim() {

@@ -42,6 +42,14 @@ turquoise water over the shallows. The break depth scales with the day's
 swell, so bigger days break wider and further out, and sets roll through
 on a slow envelope with lulls between them.
 
+The scene is a full 3D signed-distance field, so the breaking wave
+genuinely curls: in the breaking window the crest grows a thrown lip and a
+carved barrel cavity, phase-locked to the moving swell. The seabed rises
+through the waterline into a sand beach with dunes and foam runup — turn
+around and the shore is there. The camera is free: drag to look, WASD to
+move, Q/E for height (Shift to go faster), with an on-screen pad for
+touch. Render resolution adapts to the device's frame rate.
+
 ## Running it
 
 It's a fully static app — no build step, no keys:
