@@ -86,7 +86,7 @@ float bathyRaw(vec2 p) {
   } else if (uBreakType < 1.5) {
     // Point: depth contours angled ~35 deg so the break peels across view.
     float u = z * 0.82 + x * 0.57;
-    d = mix(uShallow - 7.0, 32.0, smoothstep(-52.0, 250.0, u + 12.0 * vnoise(vec2(u * 0.01, 5.1))));
+    d = mix(uShallow - 7.0, 32.0, smoothstep(-110.0, 210.0, u + 12.0 * vnoise(vec2(u * 0.01, 5.1))));
   } else if (uBreakType < 2.5) {
     // Beach: outer sandbar with rip-channel gaps, shallower trough inside.
     float bar = exp(-pow(z - 48.0, 2.0) / 2200.0) * (0.62 + 0.38 * sin(x * 0.045 + 1.3));
@@ -94,7 +94,7 @@ float bathyRaw(vec2 p) {
   } else if (uBreakType < 3.5) {
     // River mouth: tapered wedge of sand raked off the rivermouth.
     float u = (z - 20.0) + abs(x - 15.0) * 0.6;
-    d = mix(uShallow - 7.0, 32.0, smoothstep(-60.0, 240.0, u));
+    d = mix(uShallow - 7.0, 32.0, smoothstep(-115.0, 205.0, u));
   } else {
     // Big-wave ledge: deep ocean jumping onto a shelf far out.
     d = 8.0 + 0.16 * zEff;
@@ -115,14 +115,19 @@ float dwave(vec2 p, vec2 dir, float k, float amp, float sharp, float phase, floa
   float x = dot(p, dir) * k - uTime * w + phase;
   float s = 0.5 + 0.5 * sin(x);
   float h = pow(s, sharp) * 2.0 - 0.7;
-  h += lean * 1.0 * pow(s, sharp * 0.6) * sin(x * 2.0 + 1.1);
+  h += lean * 1.0 * pow(s, sharp * 0.6) * sin(1.1 - x * 2.0);
   return amp * h;
 }
 
-// Shoaled swell amplitude and breaking parameter at a point.
-void surfState(float d, out float aSw, out float gam, out float steep) {
+// Shoaled swell amplitude and breaking parameter at a point. Sets arrive
+// as wave GROUPS: a long spatial envelope travelling at the group velocity
+// (c/2 in deep water), so lulls and bombs march through the lineup instead
+// of the whole ocean breathing in unison.
+void surfState(vec2 p, float d, out float aSw, out float gam, out float steep) {
   float dw = max(d, 0.7);
-  aSw = uAmp * uSet * shoalGain(dw) * smoothstep(0.0, 1.5, d);
+  float grp = dot(p, uSwellDir) * uK / 6.0 - uTime * sqrt(G * uK) / 12.0;
+  float env = 0.78 + 0.22 * sin(grp + 1.0);
+  aSw = uAmp * uSet * env * shoalGain(dw) * smoothstep(0.0, 1.5, d);
   gam = 2.0 * aSw / dw;
   // Waves jack up hard right at the brink, then dump energy shoreward.
   aSw *= 1.0 + 1.0 * smoothstep(0.5, 0.85, gam) * (1.0 - smoothstep(1.05, 1.5, gam));
@@ -130,20 +135,22 @@ void surfState(float d, out float aSw, out float gam, out float steep) {
   steep = smoothstep(0.35, 0.85, gam);
 }
 
-float waveField(vec2 p, float d, bool detail) {
-  float aSw, gam, steep;
-  surfState(d, aSw, gam, steep);
+float waveField(vec2 p, float d, bool detail, out float aSw, out float gam) {
+  float steep;
+  surfState(p, d, aSw, gam, steep);
   float h = 0.0;
   h += dwave(p, uSwellDir,              uK,        aSw  * 0.62, 2.8 + 3.6 * steep, 0.0, steep);
   h += dwave(p, rot2(uSwellDir,  0.26), uK * 1.31, aSw  * 0.22, 2.2 + 2.2 * steep, 1.7, steep * 0.7);
   h += dwave(p, rot2(uSwellDir, -0.33), uK * 0.77, uAmp * 0.16 * smoothstep(0.0, 1.2, d), 2.0, 4.1, 0.0);
-  float ca = uChop;
+  // Wind chop also dies at the waterline instead of rippling up the sand.
+  float ct = smoothstep(0.0, 0.5, d);
+  float ca = uChop * ct;
   h += dwave(p, uWindDir,               uK * 4.1,  (uAmp * 0.09 + 0.03) * ca, 1.7, 2.3, 0.0);
   h += dwave(p, rot2(uWindDir,  0.85),  uK * 7.7,  (uAmp * 0.05 + 0.02) * ca, 1.5, 5.9, 0.0);
   if (detail) {
     h += dwave(p, rot2(uWindDir, -1.2), uK * 14.3, (uAmp * 0.025 + 0.012) * ca, 1.3, 3.3, 0.0);
-    h += 0.018 * (0.4 + ca) * vnoise(p * 2.7 + uTime * 0.6);
-    h += 0.010 * (0.4 + ca) * vnoise(p * 6.3 - uTime * 0.9);
+    h += 0.018 * (0.4 + ca) * ct * vnoise(p * 2.7 + uTime * 0.6);
+    h += 0.010 * (0.4 + ca) * ct * vnoise(p * 6.3 - uTime * 0.9);
   }
   return h;
 }
@@ -154,10 +161,9 @@ float waveField(vec2 p, float d, bool detail) {
 // visibly curls over a hollow tube where the bottom says it should.
 float waterSDF(vec3 p, bool detail) {
   float d = bathyRaw(p.xz);
-  float f = p.y - waveField(p.xz, d, detail);
+  float aSw, gam;
+  float f = p.y - waveField(p.xz, d, detail, aSw, gam);
 
-  float aSw, gam, steep;
-  surfState(d, aSw, gam, steep);
   float brl = smoothstep(0.60, 0.85, gam) * (1.0 - smoothstep(1.25, 1.6, gam));
   if (brl > 0.02) {
     float s = dot(p.xz, uSwellDir);
@@ -273,7 +279,7 @@ vec3 waterColor(vec3 p, vec3 n, vec3 rd, float dist) {
   // Bottom-aware water body color: turquoise flats, dark channels.
   float d = bathyRaw(p.xz);
   float aSw, gam, steep;
-  surfState(d, aSw, gam, steep);
+  surfState(p.xz, d, aSw, gam, steep);
 
   vec3 deep = vec3(0.015, 0.075, 0.11) * light;
   vec3 sub  = vec3(0.06, 0.32, 0.30) * light;
@@ -298,7 +304,8 @@ vec3 waterColor(vec3 p, vec3 n, vec3 rd, float dist) {
   // shoreward face (and the falling underside of the curl), rolling
   // whitewater shoreward of the break, wind streaks.
   float crest = smoothstep(uAmp * 0.45, uAmp * 1.05, p.y) * smoothstep(0.88, 0.55, n.y);
-  float front = clamp(dot(vec2(n.x, n.z), -uSwellDir) * 3.0 + 0.4, 0.0, 1.0);
+  // Forward face: n.xz = -grad(h), which points ALONG travel on the shoreward face.
+  float front = clamp(dot(vec2(n.x, n.z), uSwellDir) * 3.0 + 0.4, 0.0, 1.0);
   float lipF = smoothstep(0.68, 0.98, gam) * smoothstep(aSw * 0.2, aSw * 0.75, p.y) * front;
   float under = smoothstep(0.05, -0.45, n.y) * smoothstep(0.55, 0.9, gam); // curl underside
   float white = smoothstep(1.05, 1.55, gam) * 0.85;
@@ -553,8 +560,9 @@ class OceanSim {
     const sun = [Math.sin(sa) * Math.cos(se), Math.sin(se), Math.cos(sa) * Math.cos(se)];
 
     const now = (nowMs - this.t0) / 1000;
-    // Sets roll through every ~26 s so a session shows lulls and bombs.
-    const setEnv = 0.78 + 0.22 * Math.sin((now * 2 * Math.PI) / 26 + 1.0);
+    // Set groups are modelled in-shader as a spatial envelope travelling at
+    // the group velocity; uSet stays as a global gain (manual override hook).
+    const setEnv = 1.0;
     // The break's shallowest depth tracks the swell so today's size breaks
     // over it — bigger days break wider and further out.
     const shallow = Math.max(0.8, Math.min(5.0, c.waveHeightM * 0.9));
