@@ -8,9 +8,15 @@ This still runs in time O(branching * v2_inner) because v2 is deterministic
 once it's Long's turn after Short's response.
 """
 from __future__ import annotations
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys
 sys.setrecursionlimit(10**7)
-sys.path.insert(0, "/home/user/workspace/erdos872")
+sys.path.insert(0, _REPO_ROOT)
 
 from solver_fast import precompute_kills
 from strategy_test import long_strategy_v2

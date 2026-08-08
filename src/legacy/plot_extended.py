@@ -1,12 +1,18 @@
 """Regenerate sat plot with extended data through whatever n the solver reached."""
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import json, math
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-DATA = Path("/home/user/workspace/erdos872/extended_results.json")
-OUT = Path("/home/user/workspace/erdos872/sat_plot.png")
+DATA = Path(_REPO_ROOT + "/extended_results.json")
+OUT = Path(_REPO_ROOT + "/sat_plot.png")
 
 with DATA.open() as f:
     d = json.load(f)

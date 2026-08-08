@@ -1,5 +1,11 @@
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 import sys, json
-sys.path.insert(0,'/home/user/workspace/erdos872')
+sys.path.insert(0,_REPO_ROOT)
 from multi_fiber_rse import build_edges, MultiState, Q, breaker_moves
 from k4_avoidance_v4 import initial_state, strategy_v4, make_strategy_v4_safety, worst_round_delta
 

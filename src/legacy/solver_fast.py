@@ -14,10 +14,16 @@ Optimizations over solver.py:
 """
 
 from __future__ import annotations
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys, time, json, os, signal
 sys.setrecursionlimit(10**7)
 
-OUT = "/home/user/workspace/erdos872/extended_results.json"
+OUT = _REPO_ROOT + "/extended_results.json"
 
 def candidates_for_n(n: int) -> list[int]:
     return list(range(2, n + 1))

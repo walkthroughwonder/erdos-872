@@ -29,6 +29,12 @@ or play the smallest available prime each turn). Long maximizes.
 
 Long's optimization is a one-player game tree we can solve exactly up to ~50.
 """
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys
 import time
 import json
@@ -186,7 +192,7 @@ def main():
             print(f"{n:>3} {pn:>5} {'TIMEOUT':>12} {'?':>5} {elapsed:>6.2f}s")
             results[n] = {"pi_n": pn, "sat_S_upper": None, "gap": None, "time_s": round(elapsed, 2)}
 
-    out = f"/home/user/workspace/erdos872/short_strategy_upper_{n_lo}_{n_hi}.json"
+    out = f"{_REPO_ROOT}/short_strategy_upper_{n_lo}_{n_hi}.json"
     with open(out, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nSaved {out}")

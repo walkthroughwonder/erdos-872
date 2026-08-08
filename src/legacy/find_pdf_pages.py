@@ -1,5 +1,11 @@
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from pypdf import PdfReader
-path='/home/user/workspace/erdos872/buddhdev_872.pdf'
+path=_REPO_ROOT + "/buddhdev_872.pdf"
 r=PdfReader(path)
 terms=['4.3. The conditional T2 theorem','Definition 4.5','A.1. Conditional proof','Auxiliary slot game and potential','Proposition A.6','Proposition A.9']
 for term in terms:

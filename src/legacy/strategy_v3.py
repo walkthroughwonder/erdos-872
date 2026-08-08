@@ -20,9 +20,15 @@ v3 refinements:
       (so playing x removes the most lower-half threat capacity from Short).
 """
 from __future__ import annotations
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys
 sys.setrecursionlimit(10**7)
-sys.path.insert(0, "/home/user/workspace/erdos872")
+sys.path.insert(0, _REPO_ROOT)
 
 from solver_fast import precompute_kills
 

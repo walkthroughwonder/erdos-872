@@ -1,5 +1,11 @@
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys
-sys.path.insert(0, '/home/user/workspace/erdos872')
+sys.path.insert(0, _REPO_ROOT)
 from activation_rank2_rse import edges_for_k, State, raw_rse, maker_claim, Q, live_edges
 
 k=5

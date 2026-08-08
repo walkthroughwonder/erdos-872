@@ -13,6 +13,12 @@ We minimize |M| subject to:
 Uses OR-Tools CP-SAT, which handles binary problems much faster than
 brute-force backtracking.
 """
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import sys
 import time
 from ortools.sat.python import cp_model
@@ -121,7 +127,7 @@ def main():
         sys.stdout.flush()
 
     import json
-    out_path = f"/home/user/workspace/erdos872/min_mp_sat_results_{n_lo}_{n_hi}.json"
+    out_path = f"{_REPO_ROOT}/min_mp_sat_results_{n_lo}_{n_hi}.json"
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nSaved results to {out_path}")

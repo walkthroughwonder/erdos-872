@@ -20,6 +20,12 @@ Q = 8S + sum_{e live} 2^{|e cap C|} w(e) for unit weights.
 """
 from __future__ import annotations
 
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 import argparse
 import collections
 import json
@@ -30,7 +36,7 @@ from dataclasses import asdict, dataclass
 from functools import lru_cache
 from typing import Iterable
 
-sys.path.insert(0, "/home/user/workspace/erdos872")
+sys.path.insert(0, _REPO_ROOT)
 from multi_fiber_rse import (  # noqa: E402
     MultiState,
     build_edges,
@@ -311,7 +317,7 @@ def main():
     ap.add_argument("--config", type=str, default=None, help="comma list like 5,4; omit to run required")
     ap.add_argument("--buddhdev-k4", action="store_true")
     ap.add_argument("--max-states", type=int, default=10_000_000)
-    ap.add_argument("--json-out", type=str, default="/home/user/workspace/erdos872/v4_verification_results.json")
+    ap.add_argument("--json-out", type=str, default=_REPO_ROOT + "/v4_verification_results.json")
     ap.add_argument("--greedy", action="store_true", help="use one-step max-min strategy instead of synthesized safety strategy")
     args = ap.parse_args()
     if args.buddhdev_k4:

@@ -6,6 +6,12 @@ Inputs:
   - min_mp_sat_results_*.json (proven min_M = π(n) for n=10..200)
   - short_strategy_upper_*.json (sat_S_upper for n=4..78)
 """
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import json
 import os
 import glob
@@ -14,7 +20,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT = "/home/user/workspace/erdos872"
+ROOT = _REPO_ROOT
 
 # ---- Load data ----
 with open(f"{ROOT}/extended_results.json") as f:

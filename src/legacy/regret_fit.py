@@ -10,10 +10,16 @@ Candidates:
 Uses least-squares on the full extended table from extended_results.json.
 """
 from __future__ import annotations
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import json, math
 from pathlib import Path
 
-DATA_PATH = Path("/home/user/workspace/erdos872/extended_results.json")
+DATA_PATH = Path(_REPO_ROOT + "/extended_results.json")
 
 
 def load_table():

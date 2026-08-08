@@ -8,8 +8,14 @@ one edge.  Shortener then deletes the shared q vertex.  The full-round scaled
 potential drops below its pre-Maker value even though raw RSE at the state is
 true (there exists a different safe ordinary capture).
 """
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 import sys
-sys.path.insert(0, '/home/user/workspace/erdos872')
+sys.path.insert(0, _REPO_ROOT)
 from multi_fiber_rse import build_edges, MultiState, Q, raw_rse, breaker_moves
 from k4_avoidance_v3 import strategy_v3, fiber_state
 

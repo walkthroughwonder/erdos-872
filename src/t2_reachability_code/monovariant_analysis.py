@@ -10,6 +10,12 @@ proof-quality structural monovariant on the explored state graph.
 
 from __future__ import annotations
 
+import os
+
+# Repo root, derived from this file. Was a hardcoded
+# /home/user/workspace/erdos872 sandbox path.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from dataclasses import dataclass
 import heapq
 import math
@@ -17,7 +23,7 @@ import sys
 import time
 from typing import Callable
 
-sys.path.insert(0, "/home/user/workspace/erdos872/src/t2_reachability_code")
+sys.path.insert(0, _REPO_ROOT + "/src/t2_reachability_code")
 import multi_step_exact_bounds as m
 
 EXPLORE_SECONDS = 20.0
