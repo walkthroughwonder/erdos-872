@@ -1,0 +1,6 @@
+# Core solvers are stdlib-only; these are needed by min_mp_sat.py (ortools),
+# t2_reachability_code/full_activation_safety.py (sympy), and src/legacy plots.
+ortools
+sympy
+numpy
+matplotlib

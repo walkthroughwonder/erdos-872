@@ -371,7 +371,7 @@ def run_strategy_check(fibers, strategy_name, max_states=2_000_000):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", type=str, default="33", help="comma-list of fiber sizes (e.g. '4,4' or '3,3,3' or '4,2')")
+    ap.add_argument("--config", type=str, default="3,3", help="comma-list of fiber sizes (e.g. '4,4' or '3,3,3' or '4,2')")
     args = ap.parse_args()
     sizes = [int(x) for x in args.config.split(",")]
     fibers = []
