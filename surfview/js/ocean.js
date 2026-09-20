@@ -581,6 +581,44 @@ void main() {
 }
 `;
 
+
+// Spray: camera-facing point sprites launched from the breaking lip.
+// Positions are projected with the same camera model the raymarcher uses.
+const SPRAY_VS = `
+attribute vec3 aP;      // world position
+attribute vec2 aS;      // size (m), alpha
+uniform vec2  uRes;
+uniform vec2  uLook;
+uniform vec3  uCamPos;
+varying float vA;
+void main() {
+  float yaw = uLook.x, pitch = uLook.y;
+  vec3 fwd = vec3(sin(yaw) * cos(pitch), sin(pitch), cos(yaw) * cos(pitch));
+  vec3 right = normalize(vec3(cos(yaw), 0.0, -sin(yaw)));
+  vec3 up = cross(fwd, right);
+  vec3 v = aP - uCamPos;
+  float z = dot(v, fwd);
+  if (z < 0.15) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; vA = 0.0; return; }
+  vec2 uv = vec2(dot(v, right), dot(v, up)) / (0.9 * z);
+  gl_Position = vec4(uv.x * uRes.y / uRes.x, uv.y, 0.0, 1.0);
+  gl_PointSize = clamp(aS.x * uRes.y / (0.9 * z), 1.5, 96.0);
+  vA = aS.y * smoothstep(0.15, 1.5, z);
+}
+`;
+const SPRAY_FS = `
+precision mediump float;
+uniform vec3 uTint;
+varying float vA;
+void main() {
+  vec2 c = gl_PointCoord * 2.0 - 1.0;
+  float r2 = dot(c, c);
+  if (r2 > 1.0) discard;
+  float a = vA * (1.0 - r2) * (1.0 - r2);
+  gl_FragColor = vec4(uTint, a);
+}
+`;
+const SPRAY_MAX = 1600;
+
 const BREAK_TYPE_IDS = { "reef": 0, "point": 1, "beach": 2, "river-mouth": 3, "big-wave": 4 };
 
 // The surf-state map covers the break and the beach behind it.
@@ -644,6 +682,25 @@ function jsTerrainH(x, z, breakType, shallow, hand) {
   return g;
 }
 
+
+function jsShoalGain(d) { return Math.pow(Math.max(1, Math.min(10, 18 / d)), 0.42); }
+// Mirrors surfState(): returns [aSw, gam] at a point for the given wave params.
+function jsSurfState(x, z, d, P, t) {
+  const dw = Math.max(d, 0.7);
+  const s = x * P.sx + z * P.sz;
+  const env = 0.78 + 0.22 * Math.sin(s * P.k / 6 - t * Math.sqrt(9.81 * P.k) / 12 + 1);
+  let aSw = P.amp * env * jsShoalGain(dw) * jsSmoothstep(0, 1.5, d);
+  const gam = 2 * aSw / dw;
+  aSw *= 1 + jsSmoothstep(0.5, 0.85, gam) * (1 - jsSmoothstep(1.05, 1.5, gam));
+  aSw *= jsMix(1, 0.42, jsSmoothstep(1.15, 2.0, gam));
+  return [aSw, gam];
+}
+function jsCrestPhase(x, z, P, t) {
+  const ph = (x * P.sx + z * P.sz) * P.k - t * Math.sqrt(9.81 * P.k);
+  const f = (ph - 1.5708) / 6.28318 + 0.5;
+  return ((f - Math.floor(f)) - 0.5) * 6.28318;
+}
+
 class OceanSim {
   constructor(canvas) {
     this.canvas = canvas;
@@ -664,6 +721,7 @@ class OceanSim {
     this.cond = null;
     this._build();
     this._buildFoam();
+    this._buildSpray();
     this._bindInput();
     this._onResize = () => this.resize();
     window.addEventListener("resize", this._onResize);
@@ -707,6 +765,7 @@ class OceanSim {
       common.concat(["uFlowPrev", "uFoamRes", "uDt", "uReset"]));
 
     const buf = gl.createBuffer();
+    this.triBuf = buf;
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
     for (const p of [this.main.prog, this.foam.prog, this.flow.prog]) {
@@ -813,6 +872,7 @@ class OceanSim {
     this.keys = {};
     this.mv = {};
     this._clearFoam();
+    if (this.spray) this.spray.life.fill(0);
     this.warmup = 90;   // seed the surf state so foam exists on the first frame
   }
 
@@ -893,7 +953,7 @@ class OceanSim {
     const windRad = (c.windRelDeg * Math.PI) / 180;
     let chop = Math.min(1, (c.windSpeedMs || 0) / 13);
     if (c.offshore) chop *= 0.35; // offshore wind grooms the face
-    return { amp, k, swellRad, windRad, chop, now };
+    return { amp, k, swellRad, windRad, chop, now, sx: Math.sin(swellRad), sz: Math.cos(swellRad) };
   }
 
   _setCommon(u, p) {
@@ -943,6 +1003,144 @@ class OceanSim {
     this.fsrc = fdst;
   }
 
+  _buildSpray() {
+    const gl = this.gl;
+    const prog = gl.createProgram();
+    gl.attachShader(prog, this._compile(gl.VERTEX_SHADER, SPRAY_VS));
+    gl.attachShader(prog, this._compile(gl.FRAGMENT_SHADER, SPRAY_FS));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      throw new Error("Spray link error: " + gl.getProgramInfoLog(prog));
+    }
+    this.spray = {
+      prog,
+      aP: gl.getAttribLocation(prog, "aP"),
+      aS: gl.getAttribLocation(prog, "aS"),
+      u: { uRes: gl.getUniformLocation(prog, "uRes"), uLook: gl.getUniformLocation(prog, "uLook"),
+           uCamPos: gl.getUniformLocation(prog, "uCamPos"), uTint: gl.getUniformLocation(prog, "uTint") },
+      buf: gl.createBuffer(),
+      // Interleaved per particle: x y z size alpha. Simulation state kept apart.
+      verts: new Float32Array(SPRAY_MAX * 5),
+      pos: new Float32Array(SPRAY_MAX * 3),
+      vel: new Float32Array(SPRAY_MAX * 3),
+      life: new Float32Array(SPRAY_MAX),   // seconds remaining, <= 0 is free
+      span: new Float32Array(SPRAY_MAX),
+      size: new Float32Array(SPRAY_MAX),
+      kind: new Uint8Array(SPRAY_MAX),     // 0 droplet, 1 mist
+      alive: 0,
+      rng: 12345,
+    };
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.spray.buf);
+    gl.bufferData(gl.ARRAY_BUFFER, this.spray.verts.byteLength, gl.DYNAMIC_DRAW);
+  }
+
+  _rand() {
+    // Small LCG so spawning is deterministic per session.
+    this.spray.rng = (this.spray.rng * 1664525 + 1013904223) >>> 0;
+    return this.spray.rng / 4294967296;
+  }
+
+  // Sample the breaking field and launch spray where the lip is throwing.
+  _spawnSpray(P, t, dt) {
+    const S = this.spray;
+    let budget = Math.min(90, Math.round(2400 * dt));
+    for (let n = 0; n < 160 && budget > 0; n++) {
+      const x = -120 + this._rand() * 240, z = -40 + this._rand() * 190;
+      const d = jsBathyRaw(x, z, this.breakId, this.shallow, this.hand);
+      if (d < 0.4) continue;
+      const [aSw, gam] = jsSurfState(x, z, d, P, t);
+      if (gam < 0.80 || gam > 1.25) continue;
+      const pd = jsCrestPhase(x, z, P, t);
+      if (Math.abs(pd) > 0.4) continue;
+      // Found lip water: launch a small burst.
+      const c = Math.sqrt(9.81 * Math.max(d, 0.4));
+      const yc = aSw * 0.95;
+      const burst = 1 + Math.floor(this._rand() * 3);
+      for (let b = 0; b < burst && budget > 0; b++) {
+        const i = this._freeSlot();
+        if (i < 0) return;
+        budget--;
+        const mist = this._rand() < 0.35;
+        const r1 = this._rand() - 0.5, r2 = this._rand(), r3 = this._rand();
+        S.pos[i * 3] = x + r1 * 1.5; S.pos[i * 3 + 1] = yc + 0.1 + r2 * 0.4; S.pos[i * 3 + 2] = z + (this._rand() - 0.5) * 1.5;
+        const fwd = c * (mist ? 0.35 : 0.55 + r3 * 0.35);
+        const upv = mist ? 0.6 + r2 * 1.0 : 1.8 + r2 * 3.0;
+        const side = (this._rand() - 0.5) * (mist ? 1.5 : 3.0);
+        S.vel[i * 3] = P.sx * fwd + P.sz * side; S.vel[i * 3 + 1] = upv; S.vel[i * 3 + 2] = P.sz * fwd - P.sx * side;
+        S.span[i] = S.life[i] = mist ? 0.9 + r3 * 0.9 : 0.45 + r3 * 0.5;
+        S.size[i] = mist ? 0.4 + r2 * 0.6 : 0.10 + r2 * 0.2;
+        S.kind[i] = mist ? 1 : 0;
+      }
+    }
+  }
+
+  _freeSlot() {
+    const S = this.spray;
+    for (let k = 0; k < SPRAY_MAX; k++) {
+      const i = (S.cursor = ((S.cursor || 0) + 1) % SPRAY_MAX);
+      if (S.life[i] <= 0) return i;
+    }
+    return -1;
+  }
+
+  _updateSpray(P, t, dt) {
+    const S = this.spray;
+    this._spawnSpray(P, t, dt);
+    let n = 0;
+    for (let i = 0; i < SPRAY_MAX; i++) {
+      if (S.life[i] <= 0) continue;
+      S.life[i] -= dt;
+      const mist = S.kind[i] === 1;
+      if (mist) {
+        const k = Math.exp(-dt * 1.6);
+        S.vel[i * 3] *= k; S.vel[i * 3 + 2] *= k;
+        S.vel[i * 3 + 1] = S.vel[i * 3 + 1] * k - 1.8 * dt;
+        S.size[i] += dt * 0.4;
+      } else {
+        S.vel[i * 3 + 1] -= 9.81 * dt;
+      }
+      S.pos[i * 3] += S.vel[i * 3] * dt;
+      S.pos[i * 3 + 1] += S.vel[i * 3 + 1] * dt;
+      S.pos[i * 3 + 2] += S.vel[i * 3 + 2] * dt;
+      if (S.pos[i * 3 + 1] < -0.3) { S.life[i] = 0; continue; }
+      const f = S.life[i] / S.span[i];
+      const a = (mist ? 0.18 : 0.9) * jsSmoothstep(0, 0.1, 1 - f) * Math.sqrt(f);
+      S.verts[n * 5] = S.pos[i * 3]; S.verts[n * 5 + 1] = S.pos[i * 3 + 1]; S.verts[n * 5 + 2] = S.pos[i * 3 + 2];
+      S.verts[n * 5 + 3] = S.size[i]; S.verts[n * 5 + 4] = a;
+      n++;
+    }
+    S.alive = n;
+  }
+
+  _drawSpray(light) {
+    const gl = this.gl, S = this.spray;
+    if (!S.alive) return;
+    gl.useProgram(S.prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, S.buf);
+    gl.bufferSubData(gl.ARRAY_BUFFER, 0, S.verts.subarray(0, S.alive * 5));
+    gl.enableVertexAttribArray(S.aP);
+    gl.vertexAttribPointer(S.aP, 3, gl.FLOAT, false, 20, 0);
+    gl.enableVertexAttribArray(S.aS);
+    gl.vertexAttribPointer(S.aS, 2, gl.FLOAT, false, 20, 12);
+    gl.uniform2f(S.u.uRes, this.canvas.width, this.canvas.height);
+    gl.uniform2f(S.u.uLook, this.yaw, this.pitch);
+    gl.uniform3f(S.u.uCamPos, this.pos[0], this.pos[1], this.pos[2]);
+    const l = Math.pow(0.15 + 0.85 * light, 0.4545);
+    gl.uniform3f(S.u.uTint, 0.95 * l, 0.97 * l, 1.0 * l);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.drawArrays(gl.POINTS, 0, S.alive);
+    gl.disable(gl.BLEND);
+    // Restore the fullscreen-triangle attribute layout for the other programs.
+    gl.disableVertexAttribArray(S.aS);
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.triBuf);
+    for (const p of [this.main.prog, this.foam.prog, this.flow.prog]) {
+      const loc = gl.getAttribLocation(p, "aPos");
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    }
+  }
+
   _frame() {
     const gl = this.gl, c = this.cond;
     if (!c) return;
@@ -986,5 +1184,12 @@ class OceanSim {
     gl.uniform1i(u.uFlowTex, 1);
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+    // Spray rides on top of the raymarched scene (no depth buffer to test
+    // against, but it lives above the lip so occlusion rarely matters).
+    const P = this._params(now);
+    this._updateSpray(P, now, dt);
+    const day = Math.max(0, Math.min(1, (se + 0.10) / 0.30));
+    this._drawSpray(0.06 + 0.94 * day * day * (3 - 2 * day));
   }
 }

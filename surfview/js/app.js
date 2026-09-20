@@ -6,7 +6,18 @@ const state = {
   selected: null,
   conditions: null,
   sim: null,
+  cache: {},      // spot id -> { cond, at } (ms), reused for ~10 min
+  ranked: false,  // list sorted by the live quality score
 };
+const CACHE_MS = 10 * 60 * 1000;
+
+async function conditionsFor(spot) {
+  const hit = state.cache[spot.id];
+  if (hit && Date.now() - hit.at < CACHE_MS) return hit.cond;
+  const cond = await fetchConditions(spot);
+  state.cache[spot.id] = { cond, at: Date.now() };
+  return cond;
+}
 
 // ---------------------------------------------------------------- utilities
 
@@ -150,7 +161,10 @@ function analyseConditions(spot, c) {
   else if (t >= 11 && h >= 0.9) { quality = "Solid swell, wind could be kinder"; qualityClass = "fair"; }
   else { quality = "Surfable — nothing special"; qualityClass = "fair"; }
 
-  return { offshore, windKts, quality, qualityClass };
+  // Numeric score for ranking spots: class first, then size x period.
+  const rank = { firing: 4, good: 3, fair: 2, poor: 1, flat: 0 }[qualityClass];
+  const score = rank * 100 + Math.min(99, h * t);
+  return { offshore, windKts, quality, qualityClass, score };
 }
 
 // ------------------------------------------------------------------ map / UI
@@ -182,16 +196,27 @@ function initMap() {
 function renderSpotList(filter = "") {
   const q = filter.trim().toLowerCase();
   const list = $("#spot-list");
-  const spots = SURF_SPOTS.filter(s =>
+  let spots = SURF_SPOTS.filter(s =>
     !q || `${s.name} ${s.region} ${s.country} ${s.type}`.toLowerCase().includes(q));
-  list.innerHTML = spots.map(s => `
+  const read = (s) => {
+    const c = state.cache[s.id]?.cond;
+    return c ? { c, a: analyseConditions(s, c) } : null;
+  };
+  if (state.ranked) {
+    spots = spots.slice().sort((x, y) => (read(y)?.a.score ?? -1) - (read(x)?.a.score ?? -1));
+  }
+  list.innerHTML = spots.map(s => {
+    const r = read(s);
+    const badge = r ? `<span class="spot-badge badge-${r.a.qualityClass}" title="${r.a.quality}">${mToFt(r.c.waveHeightM).toFixed(0)} ft</span>` : "";
+    return `
     <li class="spot-item ${state.selected?.id === s.id ? "active" : ""}" data-id="${s.id}">
       <span class="spot-dot spot-${s.type}"></span>
       <span class="spot-item-text">
         <strong>${s.name}</strong>
         <small>${s.region}, ${s.country} · ${s.type.replace("-", " ")}</small>
-      </span>
-    </li>`).join("") || `<li class="spot-empty">No spots match “${filter}”</li>`;
+      </span>${badge}
+    </li>`;
+  }).join("") || `<li class="spot-empty">No spots match “${filter}”</li>`;
   list.querySelectorAll(".spot-item").forEach(el =>
     el.addEventListener("click", () => {
       const spot = SURF_SPOTS.find(s => s.id === el.dataset.id);
@@ -220,7 +245,7 @@ async function selectSpot(spot, { pan }) {
 
   let cond;
   try {
-    cond = await fetchConditions(spot);
+    cond = await conditionsFor(spot);
   } catch (err) {
     console.warn("Live data unavailable:", err);
     cond = fallbackConditions(spot);
@@ -283,6 +308,27 @@ function renderConditions(spot, c) {
 
   $("#close-cond").addEventListener("click", closeConditions);
   $("#drop-in").addEventListener("click", () => enterSim(spot, c));
+}
+
+// Fetch every spot (a few at a time) and sort the list by how good it is.
+async function scanAllSpots() {
+  const btn = $("#firing");
+  btn.disabled = true;
+  let done = 0;
+  const queue = SURF_SPOTS.slice();
+  const worker = async () => {
+    while (queue.length) {
+      const spot = queue.shift();
+      try { await conditionsFor(spot); } catch (e) { console.warn("scan failed", spot.id, e); }
+      btn.textContent = `Checking spots… ${++done}/${SURF_SPOTS.length}`;
+      renderSpotList($("#search").value);
+    }
+  };
+  await Promise.all([worker(), worker(), worker(), worker()]);
+  state.ranked = true;
+  renderSpotList($("#search").value);
+  btn.disabled = false;
+  btn.textContent = "🔥 Ranked by conditions — rescan";
 }
 
 // ------------------------------------------------------------------ simulator
@@ -406,6 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMap();
   renderSpotList();
   $("#search").addEventListener("input", (e) => renderSpotList(e.target.value));
+  $("#firing").addEventListener("click", scanAllSpots);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !$("#sim-overlay").classList.contains("hidden")) exitSim();
   });

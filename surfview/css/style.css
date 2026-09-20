@@ -301,3 +301,19 @@ html, body {
     width: auto; max-height: 65%;
   }
 }
+
+.firing-btn {
+  width: 100%; margin-top: 8px; padding: 8px 10px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  color: var(--text); background: var(--panel-2); border: 1px solid var(--border); cursor: pointer;
+}
+.firing-btn:hover:not(:disabled) { border-color: var(--accent-2); }
+.firing-btn:disabled { opacity: 0.7; cursor: progress; }
+.spot-badge {
+  margin-left: auto; flex-shrink: 0; font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+.badge-firing { background: #123f2a; color: #5df0a5; }
+.badge-good   { background: #10394a; color: #55d6f5; }
+.badge-fair   { background: #3d3517; color: #f5d76b; }
+.badge-poor   { background: #45201e; color: #ff9a8f; }
+.badge-flat   { background: #26304a; color: #9db4dd; }
