@@ -50,6 +50,16 @@ around and the shore is there. The camera is free: drag to look, WASD to
 move, Q/E for height (Shift to go faster), with an on-screen pad for
 touch. Render resolution adapts to the device's frame rate.
 
+A second render pass keeps a persistent surf-state map over the break:
+fresh and old foam that are advected shoreward at the bore speed and decay
+over seconds, so whitewater trails behind each broken wave and lingers on
+the flats, plus sand wetness and a fast-draining surface film, so the
+beach darkens where the last runup reached and dries slowly. The
+two-population foam model and its decay constants follow the approach in
+the MIT-licensed [coastal-simulation](https://github.com/iamtechartist/coastal-simulation)
+project by iamtechartist; the implementation here is our own, driven by the
+analytic breaking field rather than a shallow-water solver.
+
 ## Running it
 
 It's a fully static app — no build step, no keys:
