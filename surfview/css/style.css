@@ -252,6 +252,17 @@ html, body {
 }
 .hud-hint { color: #9fc0d8; margin-left: auto; }
 
+.hud-scrub {
+  position: absolute; left: 50%; bottom: 62px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px; pointer-events: auto;
+  background: rgba(10,20,30,0.55); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px; padding: 8px 14px; backdrop-filter: blur(4px);
+  color: #dceefc; font-size: 12px; text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.hud-scrub label { text-transform: uppercase; letter-spacing: 0.6px; font-size: 10px; color: #9fc0d8; }
+.hud-scrub input { width: min(320px, 40vw); accent-color: #35c3e8; }
+.hud-scrub #scrub-label { min-width: 84px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
 #dpad {
   position: absolute;
   left: 16px;

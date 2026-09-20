@@ -53,11 +53,13 @@ async function fetchConditions(spot) {
     "&current=wave_height,wave_direction,wave_period," +
     "swell_wave_height,swell_wave_direction,swell_wave_period," +
     "wind_wave_height,sea_surface_temperature" +
-    "&hourly=wave_height,wave_period&forecast_days=3&timezone=auto";
+    "&hourly=wave_height,wave_period,wave_direction,swell_wave_height,swell_wave_period,swell_wave_direction,wind_wave_height" +
+    "&forecast_days=3&timezone=auto";
   const weatherUrl = "https://api.open-meteo.com/v1/forecast" +
     `?latitude=${spot.lat}&longitude=${spot.lon}` +
     "&current=temperature_2m,wind_speed_10m,wind_direction_10m,cloud_cover,weather_code" +
-    "&timezone=auto";
+    "&hourly=wind_speed_10m,wind_direction_10m,cloud_cover,temperature_2m" +
+    "&forecast_days=3&timezone=auto";
 
   const [marine, weather] = await Promise.all([
     fetch(marineUrl).then(r => { if (!r.ok) throw new Error(`marine API ${r.status}`); return r.json(); }),
@@ -84,7 +86,37 @@ async function fetchConditions(spot) {
     hourly: {
       time: marine.hourly?.time ?? [],
       waveHeight: marine.hourly?.wave_height ?? [],
+      wavePeriod: marine.hourly?.wave_period ?? [],
+      waveDir: marine.hourly?.wave_direction ?? [],
+      swellHeight: marine.hourly?.swell_wave_height ?? [],
+      swellPeriod: marine.hourly?.swell_wave_period ?? [],
+      swellDir: marine.hourly?.swell_wave_direction ?? [],
+      windWave: marine.hourly?.wind_wave_height ?? [],
+      windSpeed: weather.hourly?.wind_speed_10m ?? [],
+      windDir: weather.hourly?.wind_direction_10m ?? [],
+      cloud: weather.hourly?.cloud_cover ?? [],
     },
+  };
+}
+
+// The conditions object as they will be at forecast hour `i` (local time
+// strings from the API). Missing hourly fields fall back to "now".
+function conditionsAtHour(c, i) {
+  const h = c.hourly, pick = (arr, cur) => (arr[i] != null ? arr[i] : cur);
+  const swellH = pick(h.swellHeight, c.swellHeightM);
+  const usable = swellH != null && swellH > 0.05;
+  return {
+    ...c,
+    waveHeightM: pick(h.waveHeight, c.waveHeightM),
+    swellHeightM: usable ? swellH : pick(h.waveHeight, c.waveHeightM),
+    periodS: (usable ? pick(h.swellPeriod, null) : null) ?? pick(h.wavePeriod, c.periodS),
+    swellFromDeg: (usable ? pick(h.swellDir, null) : null) ?? pick(h.waveDir, c.swellFromDeg),
+    windWaveM: pick(h.windWave, c.windWaveM),
+    windSpeedKmh: pick(h.windSpeed, c.windSpeedKmh),
+    windFromDeg: pick(h.windDir, c.windFromDeg),
+    cloudCover: h.cloud[i] != null ? h.cloud[i] / 100 : c.cloudCover,
+    at: h.time[i] ? new Date(Date.parse(h.time[i] + "Z") - c.utcOffsetSec * 1000) : new Date(),
+    atLabel: h.time[i] ? h.time[i].slice(5, 16).replace("T", " ") : "now",
   };
 }
 
@@ -96,7 +128,8 @@ function fallbackConditions(spot) {
     windWaveM: 0.2, waterTempC: null, airTempC: null,
     windSpeedKmh: 12, windFromDeg: (spot.faces + 180) % 360,
     cloudCover: 0.2, utcOffsetSec: 0,
-    hourly: { time: [], waveHeight: [] },
+    hourly: { time: [], waveHeight: [], wavePeriod: [], waveDir: [], swellHeight: [], swellPeriod: [],
+              swellDir: [], windWave: [], windSpeed: [], windDir: [], cloud: [] },
   };
 }
 
@@ -254,18 +287,14 @@ function renderConditions(spot, c) {
 
 // ------------------------------------------------------------------ simulator
 
-function enterSim(spot, c) {
-  const overlay = $("#sim-overlay");
-  overlay.classList.remove("hidden");
-
+// Everything in the shader is expressed in the camera frame:
+// +z looks straight out to sea along the spot's `faces` bearing.
+function simConditions(spot, c, when) {
   const a = analyseConditions(spot, c);
-  const sun = sunPosition(new Date(), spot.lat, spot.lon);
+  const sun = sunPosition(when, spot.lat, spot.lon);
   const azDeg = (sun.az * 180) / Math.PI;
-
-  // Everything in the shader is expressed in the camera frame:
-  // +z looks straight out to sea along the spot's `faces` bearing.
   const rel = (bearing) => angleDiff(bearing, spot.faces);
-  const cond = {
+  return {
     waveHeightM: c.waveHeightM,
     wavePeriodS: c.periodS,
     swellRelDeg: rel((c.swellFromDeg + 180) % 360), // travel direction
@@ -276,7 +305,22 @@ function enterSim(spot, c) {
     sunAzimRelRad: (rel(azDeg) * Math.PI) / 180,
     cloudCover: c.cloudCover,
     breakType: spot.type,
+    hand: spot.hand,
   };
+}
+
+function hudNumbers(c, a) {
+  return `
+      <span><b>${mToFt(c.waveHeightM).toFixed(1)} ft</b> @ ${Math.round(c.periodS)}s from ${compass(c.swellFromDeg)}</span>
+      <span>wind <b>${a.windKts.toFixed(0)} kts</b> ${compass(c.windFromDeg)} (${a.offshore ? "offshore" : "onshore"})</span>
+      ${c.waterTempC != null ? `<span>water <b>${c.waterTempC.toFixed(0)}°C</b></span>` : ""}`;
+}
+
+function enterSim(spot, c) {
+  const overlay = $("#sim-overlay");
+  overlay.classList.remove("hidden");
+
+  const a = analyseConditions(spot, c);
 
   try {
     if (!state.sim) state.sim = new OceanSim($("#sim-canvas"));
@@ -287,23 +331,30 @@ function enterSim(spot, c) {
   }
   state.sim.yaw = 0;
   state.sim.pitch = -0.05;
-  state.sim.setConditions(cond);
+  state.sim.setConditions(simConditions(spot, c, new Date()));
   state.sim.resize();
   state.sim.start();
 
   const local = new Date(Date.now() + c.utcOffsetSec * 1000);
+  const hours = c.hourly.time.length;
+  // Index of the current hour in the forecast arrays (local time strings).
+  const nowIdx = Math.max(0, c.hourly.time.findIndex(t => t >= local.toISOString().slice(0, 13)));
   $("#sim-hud").innerHTML = `
     <div class="hud-top">
       <div class="hud-title">
         <h3>${spot.name}</h3>
-        <span>${spot.region} · local ${local.toISOString().slice(11, 16)} · ${c.live ? "live conditions" : "typical conditions (offline)"}</span>
+        <span id="hud-when">${spot.region} · local ${local.toISOString().slice(11, 16)} · ${c.live ? "live conditions" : "typical conditions (offline)"}</span>
       </div>
       <button id="exit-sim" class="exit-btn">← Back to map</button>
     </div>
+    ${hours > 8 ? `
+    <div class="hud-scrub">
+      <label for="scrub">Forecast</label>
+      <input id="scrub" type="range" min="${nowIdx}" max="${hours - 1}" value="${nowIdx}" step="1">
+      <span id="scrub-label">now</span>
+    </div>` : ""}
     <div class="hud-bottom">
-      <span><b>${mToFt(c.waveHeightM).toFixed(1)} ft</b> @ ${Math.round(c.periodS)}s from ${compass(c.swellFromDeg)}</span>
-      <span>wind <b>${a.windKts.toFixed(0)} kts</b> ${compass(c.windFromDeg)} (${a.offshore ? "offshore" : "onshore"})</span>
-      ${c.waterTempC != null ? `<span>water <b>${c.waterTempC.toFixed(0)}°C</b></span>` : ""}
+      <span id="hud-nums">${hudNumbers(c, a)}</span>
       <span class="hud-hint">drag look · WASD move · Q/E height · Shift fast</span>
     </div>
     <div id="dpad">
@@ -315,6 +366,24 @@ function enterSim(spot, c) {
       <button data-mv="down"  style="grid-area:d" aria-label="Descend">▬</button>
     </div>`;
   $("#exit-sim").addEventListener("click", exitSim);
+
+  // Scrub the forecast: swap the sea state and sun to that hour, keep the
+  // camera where it is.
+  const scrub = $("#scrub");
+  if (scrub) {
+    scrub.addEventListener("input", () => {
+      const i = +scrub.value;
+      const isNow = i === nowIdx;
+      const hc = isNow ? c : conditionsAtHour(c, i);
+      const when = isNow ? new Date() : hc.at;
+      state.sim.updateConditions(simConditions(spot, hc, when));
+      $("#scrub-label").textContent = isNow ? "now" : hc.atLabel;
+      $("#hud-nums").innerHTML = hudNumbers(hc, analyseConditions(spot, hc));
+      $("#hud-when").textContent = isNow
+        ? `${spot.region} · local ${local.toISOString().slice(11, 16)} · ${c.live ? "live conditions" : "typical conditions (offline)"}`
+        : `${spot.region} · forecast for ${hc.atLabel} local`;
+    });
+  }
   document.querySelectorAll("#dpad button").forEach(btn => {
     const mv = btn.dataset.mv;
     const on = (e) => { e.preventDefault(); state.sim.setMove(mv, true); };
