@@ -1068,7 +1068,7 @@ class OceanSim {
         const side = (this._rand() - 0.5) * (mist ? 1.5 : 3.0);
         S.vel[i * 3] = P.sx * fwd + P.sz * side; S.vel[i * 3 + 1] = upv; S.vel[i * 3 + 2] = P.sz * fwd - P.sx * side;
         S.span[i] = S.life[i] = mist ? 0.9 + r3 * 0.9 : 0.45 + r3 * 0.5;
-        S.size[i] = mist ? 0.4 + r2 * 0.6 : 0.10 + r2 * 0.2;
+        S.size[i] = mist ? 0.35 + r2 * 0.45 : 0.10 + r2 * 0.2;
         S.kind[i] = mist ? 1 : 0;
       }
     }
@@ -1104,7 +1104,7 @@ class OceanSim {
       S.pos[i * 3 + 2] += S.vel[i * 3 + 2] * dt;
       if (S.pos[i * 3 + 1] < -0.3) { S.life[i] = 0; continue; }
       const f = S.life[i] / S.span[i];
-      const a = (mist ? 0.18 : 0.9) * jsSmoothstep(0, 0.1, 1 - f) * Math.sqrt(f);
+      const a = (mist ? 0.12 : 0.9) * jsSmoothstep(0, 0.1, 1 - f) * Math.sqrt(f);
       S.verts[n * 5] = S.pos[i * 3]; S.verts[n * 5 + 1] = S.pos[i * 3 + 1]; S.verts[n * 5 + 2] = S.pos[i * 3 + 2];
       S.verts[n * 5 + 3] = S.size[i]; S.verts[n * 5 + 4] = a;
       n++;
