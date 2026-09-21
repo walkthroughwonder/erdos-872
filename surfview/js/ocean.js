@@ -802,6 +802,7 @@ class OceanSim {
       this.tex.push(t);
       this.fbo.push(f);
     }
+    gl.bindTexture(gl.TEXTURE_2D, null);   // texImage2D left the last target bound
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     this.foamOk = true;
     this.src = 0;
@@ -817,6 +818,10 @@ class OceanSim {
       gl.clear(gl.COLOR_BUFFER_BIT);
     }
     // Flow targets start at the resting grid (needs the shader to encode it).
+    // Unbind both sampler units first: a target still bound from the last
+    // frame's main draw would form a feedback loop and the draw is dropped.
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, null);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, null);
     const fl = this.flow;
     gl.useProgram(fl.prog);
     gl.viewport(0, 0, FOAM_RES, FOAM_RES);

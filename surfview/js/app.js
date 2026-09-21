@@ -152,9 +152,22 @@ function analyseConditions(spot, c) {
   const offshore = Math.abs(angleDiff(windToDeg, spot.faces)) < 65;
   const windKts = c.windSpeedKmh / 1.852;
 
+  // Swell exposure: a swell arriving from behind the coast cannot reach the
+  // break. Compare where the swell comes FROM with where the beach faces;
+  // energy tails off past ~45 deg and is mostly gone past ~120 deg (some
+  // wraps in by refraction).
+  const swellOff = Math.abs(angleDiff(c.swellFromDeg, spot.faces));
+  const tOff = Math.max(0, Math.min(1, (swellOff - 45) / 75));
+  const exposure = 1 - (1 - 0.12) * tOff * tOff * (3 - 2 * tOff);
+  const hEff = c.waveHeightM * exposure;
+
   let quality, qualityClass;
-  const h = c.waveHeightM, t = c.periodS;
-  if (h < 0.4) { quality = "Flat — maybe grab a longboard"; qualityClass = "flat"; }
+  const h = hEff, t = c.periodS;
+  if (exposure < 0.45 && c.waveHeightM >= 0.4) {
+    quality = `Blocked — ${compass(c.swellFromDeg)} swell can't reach a ${compass(spot.faces)}-facing break`;
+    qualityClass = "flat";
+  }
+  else if (h < 0.4) { quality = "Flat — maybe grab a longboard"; qualityClass = "flat"; }
   else if (offshore && t >= 11 && h >= 0.9) { quality = "Firing — clean groundswell + offshore winds"; qualityClass = "firing"; }
   else if (offshore && h >= 0.5) { quality = "Clean — offshore and rideable"; qualityClass = "good"; }
   else if (!offshore && windKts > 15) { quality = "Blown out — strong onshore wind"; qualityClass = "poor"; }
@@ -164,8 +177,9 @@ function analyseConditions(spot, c) {
   // Numeric score for ranking spots: class first, then size x period.
   const rank = { firing: 4, good: 3, fair: 2, poor: 1, flat: 0 }[qualityClass];
   const score = rank * 100 + Math.min(99, h * t);
-  return { offshore, windKts, quality, qualityClass, score };
+  return { offshore, windKts, quality, qualityClass, score, exposure, hEff };
 }
+const QUALITY_WORD = { firing: "firing", good: "clean", fair: "ok", poor: "blown", flat: "flat" };
 
 // ------------------------------------------------------------------ map / UI
 
@@ -207,7 +221,7 @@ function renderSpotList(filter = "") {
   }
   list.innerHTML = spots.map(s => {
     const r = read(s);
-    const badge = r ? `<span class="spot-badge badge-${r.a.qualityClass}" title="${r.a.quality}">${mToFt(r.c.waveHeightM).toFixed(0)} ft</span>` : "";
+    const badge = r ? `<span class="spot-badge badge-${r.a.qualityClass}" title="${r.a.quality}">${mToFt(r.a.hEff).toFixed(0)} ft · ${QUALITY_WORD[r.a.qualityClass]}</span>` : "";
     return `
     <li class="spot-item ${state.selected?.id === s.id ? "active" : ""}" data-id="${s.id}">
       <span class="spot-dot spot-${s.type}"></span>
@@ -295,7 +309,7 @@ function renderConditions(spot, c) {
     <div class="quality quality-${a.qualityClass}">${a.quality}</div>
     ${c.live ? "" : `<div class="offline-note">⚠ Live data unavailable right now — showing typical conditions.</div>`}
     <div class="cond-grid">
-      <div class="cond-cell"><label>Surf</label><b>${fmtHeight(c.waveHeightM)}</b></div>
+      <div class="cond-cell"><label>Surf</label><b>${fmtHeight(c.waveHeightM)}</b>${a.exposure < 0.95 ? `<small class="cell-note">~${mToFt(a.hEff).toFixed(1)} ft reaching the break — swell ${Math.round(100 - a.exposure * 100)}% shadowed</small>` : ""}</div>
       <div class="cond-cell"><label>Swell</label><b>${fmtHeight(c.swellHeightM)} @ ${Math.round(c.periodS)}s</b></div>
       <div class="cond-cell"><label>Swell dir</label><b><span class="arrow" style="transform:rotate(${Math.round(c.swellFromDeg + 180)}deg)">➤</span> from ${compass(c.swellFromDeg)}</b></div>
       <div class="cond-cell"><label>Wind</label><b>${a.windKts.toFixed(0)} kts ${compass(c.windFromDeg)} · ${a.offshore ? "offshore ✓" : "onshore"}</b></div>
@@ -341,7 +355,7 @@ function simConditions(spot, c, when) {
   const azDeg = (sun.az * 180) / Math.PI;
   const rel = (bearing) => angleDiff(bearing, spot.faces);
   return {
-    waveHeightM: c.waveHeightM,
+    waveHeightM: Math.max(0.15, a.hEff),   // only the swell that reaches the break
     wavePeriodS: c.periodS,
     swellRelDeg: rel((c.swellFromDeg + 180) % 360), // travel direction
     windRelDeg: rel((c.windFromDeg + 180) % 360),
@@ -357,7 +371,7 @@ function simConditions(spot, c, when) {
 
 function hudNumbers(c, a) {
   return `
-      <span><b>${mToFt(c.waveHeightM).toFixed(1)} ft</b> @ ${Math.round(c.periodS)}s from ${compass(c.swellFromDeg)}</span>
+      <span><b>${mToFt(a.hEff).toFixed(1)} ft</b> @ ${Math.round(c.periodS)}s from ${compass(c.swellFromDeg)}${a.exposure < 0.95 ? ` <em>(${mToFt(c.waveHeightM).toFixed(1)} ft offshore, mostly shadowed)</em>` : ""}</span>
       <span>wind <b>${a.windKts.toFixed(0)} kts</b> ${compass(c.windFromDeg)} (${a.offshore ? "offshore" : "onshore"})</span>
       ${c.waterTempC != null ? `<span>water <b>${c.waterTempC.toFixed(0)}°C</b></span>` : ""}`;
 }
